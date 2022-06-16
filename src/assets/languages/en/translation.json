@@ -1,0 +1,34 @@
+{
+        "general": {
+            "header": {
+
+            },
+            "footer": {
+    
+            },
+            "tab": {
+                "header": {
+                    "title": "Tab 1"
+                },
+                "body": {
+                    "head": "Tab 1 page",
+                    "content": "Explore UI Components"
+                },
+                "footer": {
+                    "buttonOne": "Tab 1",
+                    "buttonTwo": "Tab 2",
+                    "buttonThree": "Tab 3"
+                }
+            }
+        },
+        "specific": {
+            "landing": {
+                "email": {
+                    "title": "Email",
+                    "placeholder": "Leave your email",
+                    "button": "GET MORE INFO",
+                    "sentEmailMessage": "We have sent you an email, please check your mailbox to get more info"
+                }
+            }
+        }
+}

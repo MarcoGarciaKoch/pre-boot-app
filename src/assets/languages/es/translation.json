@@ -1,0 +1,34 @@
+{
+        "general": {
+            "header": {
+
+            },
+            "footer": {
+    
+            },
+            "tab": {
+                "header": {
+                    "title": "Tabla 1"
+                },
+                "body": {
+                    "head": "Página Tabla 1",
+                    "content": "Explora Componentes UI"
+                },
+                "footer": {
+                    "buttonOne": "Tabla 1",
+                    "buttonTwo": "Tabla 2",
+                    "buttonThree": "Tabla 3"
+                }
+            }
+        },
+        "specific": {
+            "landing": {
+                "email": {
+                    "title": "Email",
+                    "placeholder": "Deja tu email",
+                    "button": "MAS INFO",
+                    "sentEmailMessage": "Te hemos mandado un email, revisa tu bandeja para más información"
+                }
+            }
+        }
+}
