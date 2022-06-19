@@ -1,40 +1,76 @@
-import { useAuth, useQuery } from "../../../core/auth/auth.hook";
-import { BrowserRouter as Router, Link, useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { IonText } from "@ionic/react";
+import { useAuth } from '../../../core/auth/auth.hook';
+import {Link, useHistory, useLocation } from "react-router-dom";
+import { IonContent, IonPage, IonText, IonTitle, useIonViewWillEnter, IonGrid, IonRow, IonCol, IonImg } from "@ionic/react";
+import { useQuery } from '../../../core/auth/auth.hook';
+import './style.css';
+import Alert from '../../../assets/images/alert.png';
+import Obama from '../../../assets/images/tenor.gif';
+
 
 const Validate: React.FC = () => {
     const { isAuth, validate, accountValidated } = useAuth();
     const query = useQuery();
     const history = useHistory();
+    const location = useLocation();
     
-    useEffect(() => {
-        validate(query.get('token') || '');
-    }, []);
+    
+    useIonViewWillEnter(() => {
+        validate(query.get('token')?? '');
+    }, [location]/*depdendency array*/);
+
 
     if (isAuth) { 
         // if already autheticated, it will redirect to main page
        history.push("/dashboard");
     }
+ 
 
     return (
-        accountValidated ? (
-                            <>
-                                <IonText color="primary">
-                                <h1>Congrats!! Your email has been validated successfull. You can already start your journey!</h1>
-                                <Link to={'/login'}><IonText color="medium">Go to Login </IonText></Link>
-                                </IonText>
-                            </>
+        <IonPage>
+        {accountValidated ? (
+                            <IonContent fullscreen className="background">
+                                <IonGrid>
+                                    <IonRow className="ion-justify-content-center">
+                                        <IonCol size='7'>
+                                            <IonImg src={Obama} alt="pre-boot-logo" className="obama_gif"/>
+                                        </IonCol>
+                                    </IonRow>
+                                    <IonRow className="ion-justify-content-center">
+                                        <IonCol size='10'>
+                                            <IonTitle className='message'> Congrats!! Your email has been validated successfully. You can already login and start your course!</IonTitle>
+                                        </IonCol>
+                                    </IonRow>
+                                    <IonRow className="ion-justify-content-center">
+                                        <IonCol size='10'>
+                                        <Link to={'/login'}><IonText className='link-login ion-padding-start' color="medium">Go to Login</IonText></Link>
+                                        </IonCol>
+                                    </IonRow>
+                                </IonGrid>
+                            </IonContent>   
                         ) 
                         : 
                         (  
-                            <>
-                                <IonText color="primary">
-                                <h1>Ooopss!! Something went wrong. Either service is not available at the moment or your account has already been validated.</h1>
-                                <Link to={'/login'}><IonText color="medium">Go back to Login</IonText></Link>
-                                </IonText>
-                            </>  
-                        )
+                            <IonContent fullscreen className="background">
+                                <IonGrid>
+                                    <IonRow className="ion-justify-content-center">
+                                        <IonCol size='4'>
+                                            <IonImg src={Alert} alt="pre-boot-logo" className="alert__image"/>
+                                        </IonCol>
+                                    </IonRow>
+                                    <IonRow className="ion-justify-content-center">
+                                        <IonCol size='10'>
+                                            <IonTitle className='message'>Ooopss!! Something went wrong. Either service is not available at the moment or your account has already been validated.</IonTitle>
+                                        </IonCol>
+                                    </IonRow>
+                                    <IonRow className="ion-justify-content-center">
+                                        <IonCol size='10'>
+                                        <Link to={'/login'}><IonText className='link-login ion-padding-start' color="medium">Go back to Login</IonText></Link>
+                                        </IonCol>
+                                    </IonRow>
+                                </IonGrid>
+                            </IonContent>  
+                        )}
+        </IonPage>
     );
 }
 

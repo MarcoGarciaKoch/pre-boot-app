@@ -1,19 +1,30 @@
-import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonToolbar, IonItem, IonLabel, IonInput, IonTitle } from '@ionic/react';
+import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonToolbar, 
+        IonItem, IonLabel, IonInput, IonTitle, IonImg, IonToggle } from '@ionic/react';
 import { useAuth } from "../../../core/auth/auth.hook";
 import { personCircle } from 'ionicons/icons';
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
+import './style.css';
+import { useTranslation } from 'react-i18next';
+import { moon } from 'ionicons/icons';
+import PreBoot from '../../../assets/images/pre-boot-logo.png';
+import Sun from '../../../assets/images/sunny-outline.svg';
+import LoginLogo from '../../../assets/images/login-avatar.png';
+
 
 const Login: React.FC = () => {
     const { isAuth, login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
+    const [t, i18n] = useTranslation('translation');
+    const toggleDarkModeHandler = () => document.body.classList.toggle('dark');
+    
 
-if (isAuth) { 
-    // Redirect to the /dashboard page when we are already logged in.
-    history.push("/dashboard");
-}   
+// if (isAuth) { 
+//     // Redirect to the /dashboard page when we are already logged in.
+//     history.push("/dashboard");
+// }   
 
 const handleLogin = (e: any) => {
                 e.preventDefault();
@@ -27,61 +38,63 @@ const handleLogin = (e: any) => {
     }
 
 	return (
-		<IonPage /*className={ styles.loginPage }*/>
+		<IonPage>
 			<IonHeader>
                 <IonToolbar>
-                    <IonTitle>Login</IonTitle>
+                    <IonItem lines='none'>
+                        <IonImg src={PreBoot} alt="pre-boot-logo" className="header__logo"/>
+                        <IonTitle className="header__title">PRE-BOOT</IonTitle>
+                    </IonItem>
+                    <IonIcon slot="end" icon={Sun} />
+                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+                    <IonIcon slot="end" icon={moon} className="ion-padding-end"/>
+                    <IonButton size='small' className="es-button__language ion-padding-start" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
+                    <IonButton size='small' className="en-button__language ion-padding-end" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
                 </IonToolbar>
             </IonHeader>
-			<IonContent fullscreen>
-                <IonGrid className="ion-padding">
-                    <IonRow>
-                        <IonCol>
-                            <IonIcon
-                            style={{ fontSize: "120px", color: "#0040ff" }}
-                            icon={personCircle}
-                            />
+			<IonContent fullscreen className='content-background'>
+                <IonGrid>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='1'>
+                            <IonImg src={LoginLogo} alt="login-logo" className="login__logo"></IonImg>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Email</IonLabel>
+                            <IonLabel position="floating">{t('specific.login.email')}</IonLabel>
                             <IonInput
                                 type="email"
                                 name='email'
-                                placeholder="Enter your email"
+                                placeholder={t('specific.login.email-placeholder')}
                                 onIonChange={(e:any) => setEmail(e.target.value)}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Password</IonLabel>
+                            <IonLabel position="floating">{t('specific.login.password')}</IonLabel>
                             <IonInput
                                 type="password"
                                 name='password'
-                                placeholder="Enter your password"
+                                placeholder={t('specific.login.password-placeholder')}
                                 onIonChange={(e:any) => setPassword(e.target.value)}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <p style={{ fontSize: "small" }}>
-                            By clicking LOGIN you agree to our <a href="#">Policy</a> and <a href="#">Terms</a> of Use.
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
+                            <p className='extra-info' style={{ fontSize: "small" }}>
+                            {t('specific.login.extra-info')} <a href="#">{t('specific.login.policy')}</a> {t('specific.login.and')} <a href="#">{t('specific.login.terms')}</a> {t('specific.login.use')}.
                             </p>
-                            <IonButton expand="block" onClick={handleLogin}>
+                            <IonButton className='register__button' expand="block" onClick={handleLogin}>
                             Login
                             </IonButton>
-                            <p style={{ fontSize: "small" }}>
-                            Don't have an account? <a href="/register">Sign up!</a>
-                            </p>
                         </IonCol>
                     </IonRow>
                 </IonGrid>

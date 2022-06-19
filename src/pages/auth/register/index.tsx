@@ -1,41 +1,49 @@
 import { useAuth } from "../../../core/auth/auth.hook";
-import { useEffect, useState } from "react";
-import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonSelect, IonSelectOption, IonToolbar } from '@ionic/react';
+import { useState } from "react";
+import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, 
+         IonSelect, IonSelectOption, IonToolbar, useIonViewWillEnter, IonImg, IonToggle } from '@ionic/react';
 import { IonItem, IonLabel, IonInput, IonTitle } from '@ionic/react';
 import Key from '../../../assets/images/key-sharp.svg';
 import { RegisterUser } from "./register.model";
 import { useHistory } from "react-router-dom";
 import { useQuery } from '../../../core/auth/auth.hook';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import Sun from '../../../assets/images/sunny-outline.svg';
+import { moon } from 'ionicons/icons';
+import PreBoot from '../../../assets/images/pre-boot-logo.png';
+import RegisterUserLogo from '../../../assets/images/register-user.png';
+import './style.css';
 
 
 const Register: React.FC = () => {
-    const { register, isAuth, validateEarlyStudent, studentKnownData } = useAuth();
+    const { register, isAuth, validateEarlyStudent } = useAuth();
     const [showEmailConfirm, updateShowEmail] = useState(false);
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
-    const [email, setEmail] = useState('');
-    const [bootcamp, setBootcamp] = useState('');
-    const [isValid, setIsValid] = useState(true);
+    const [studentKnownData, setStudentKnownData] = useState({email: 'email', bootcamp: 'bootcamp'});
     const history = useHistory();
     const query = useQuery();
+    const location = useLocation();
+    const toggleDarkModeHandler = () => document.body.classList.toggle('dark');
+    const [t, i18n] = useTranslation('translation');
 
 
-   useEffect(() => {
-        validateEarlyStudent(query.get('token')??'').then(r => setIsValid(r.ok));
-        console.log(isValid);
-    }, []);
+    useIonViewWillEnter(() => {
+        validateEarlyStudent(query.get('token')??'').then(r => setStudentKnownData(r));
+    }, [location]/*depdendency array*/);
 
-        console.log(studentKnownData);
     
     const handleSubmit = (e:any) => {
         e.preventDefault();
+        console.log(studentKnownData)
         const user:RegisterUser = {
             name,
             lastname,
-            email,
+            email: studentKnownData.email,
             password,
-            bootcamp
+            bootcamp: studentKnownData.bootcamp,
         };
         register(user).then(() => updateShowEmail(true));
     }
@@ -47,114 +55,112 @@ const Register: React.FC = () => {
 
     
     return (
-        isValid ?
         <IonPage /*className={ styles.loginPage }*/>
 			<IonHeader>
                 <IonToolbar>
-                    <IonTitle>Create a new account</IonTitle>
+                    <IonItem lines="none">
+                        <IonImg src={PreBoot} alt="pre-boot-logo" className="header__logo"/>
+                        <IonTitle className="header__title">PRE-BOOT</IonTitle>
+                    </IonItem>
+                    <IonIcon slot="end" icon={Sun} />
+                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+                    <IonIcon slot="end" icon={moon} className="ion-padding-end"/>
+                    <IonButton size='small' className="es-button__language ion-padding-start" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
+                    <IonButton size='small' className="en-button__language ion-padding-end" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
                 </IonToolbar>
             </IonHeader>
-			<IonContent fullscreen>
+			<IonContent fullscreen className='content-background'>
                 <IonGrid className="ion-padding">
                     {showEmailConfirm ?
                     <IonRow>
                         <IonCol>
-                            <IonLabel position="floating"> We have sent you an email, please check your mailbox to validate your account</IonLabel>
+                            <IonTitle className="registered-message">{t('specific.register.registered-message')}</IonTitle>
                         </IonCol>
                     </IonRow>
                     : ''}
-                    <IonRow>
-                        <IonCol>
-                            <IonIcon
-                            style={{ fontSize: "120px", color: "#0040ff" }}
-                            icon={Key}
-                            />
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='1'>
+                           <IonImg src={RegisterUserLogo} alt="register-user-logo" className="register-user__logo"/>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol  size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Name</IonLabel>
+                            <IonLabel position="floating">{t('specific.register.name')}</IonLabel>
                             <IonInput
                                 type="text"
                                 name='name'
-                                placeholder="Enter your name"
+                                placeholder={t('specific.register.name-placeholder')}
                                 onIonChange={(e:any) => setName(e.target.value)}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
-                    </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    </IonRow >
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol  size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Lastname</IonLabel>
+                            <IonLabel position="floating">{t('specific.register.lastname')}</IonLabel>
                             <IonInput
                                 type="text"
                                 name='lastname'
-                                placeholder="Enter your lastname"
+                                placeholder={t('specific.register.lastname-placeholder')}
                                 onIonChange={(e:any) => setLastname(e.target.value)}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol  size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Email</IonLabel>
+                            <IonLabel position="floating" >{t('specific.register.email')}</IonLabel>
                             <IonInput
+                                disabled
                                 type="email"
                                 name='email'
-                                placeholder="email"
+                                value={studentKnownData.email}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol  size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Password</IonLabel>
+                            <IonLabel position="floating">{t('specific.register.password')}</IonLabel>
                             <IonInput
                                 type="password"
                                 name='password'
-                                placeholder="Enter your password"
+                                placeholder={t('specific.register.password-placeholder')}
                                 onIonChange={(e:any) => setPassword(e.target.value)}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol  size='4'>
                             <IonItem>
-                                <IonLabel>Your bootcamp</IonLabel>
+                                <IonLabel position="floating">{t('specific.register.course')}</IonLabel>
                                 <IonInput
+                                disabled
                                 type="text"
                                 name='bootcamp'
-                                placeholder="bootcamp"
+                                value={studentKnownData.bootcamp}
                                 >
                             </IonInput>
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <IonButton expand="block" onClick={handleSubmit}>Register</IonButton>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
+                            <IonButton className='register__button' expand="block" onClick={handleSubmit}>{t('specific.register.button')}</IonButton>
                         </IonCol>
                     </IonRow>
                 </IonGrid>
 			</IonContent>
 		</IonPage>
-        :
-        <IonPage /*className={ styles.loginPage }*/>
-			<IonHeader>
-                <IonToolbar>
-                    <IonTitle>Something went wrong and we can not process your petition</IonTitle>
-                </IonToolbar>
-            </IonHeader>
-        </IonPage>
     )
 }
 

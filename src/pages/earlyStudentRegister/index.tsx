@@ -1,10 +1,17 @@
 import { useEarlyStudentAuth } from '../../core/earlyStudentAuth/earlyStudentAuth.hook';
-import { useEffect, useState } from "react";
-import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonSelect, IonSelectOption, IonToolbar } from '@ionic/react';
+import { useState } from "react";
+import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonImg, IonSelect, 
+         IonSelectOption, IonToolbar, useIonViewWillEnter, IonToggle, IonFooter } from '@ionic/react';
 import { IonItem, IonLabel, IonInput, IonTitle } from '@ionic/react';
-import Key from '../../assets/images/key-sharp.svg';
 import { EarlyStudent } from './earlyStudentRegister.model';
 import { useQuery } from "../../core/earlyStudentAuth/earlyStudentAuth.hook";
+import { useLocation } from 'react-router-dom';
+import PreBoot from '../../assets/images/pre-boot-logo.png';
+import { useTranslation } from 'react-i18next';
+import { moon } from 'ionicons/icons';
+import Sun from '../../assets/images/sunny-outline.svg';
+import RegisterLogo from '../../assets/images/register-early-student.png';
+import './style.css';
 
 
 const EarlyStudentRegister: React.FC = () => {
@@ -13,18 +20,22 @@ const EarlyStudentRegister: React.FC = () => {
     const [email, setEmail] = useState('');
     const [bootcamp, setBootcamp] = useState('');
     const [role, setRole] = useState('');
+    const [courseList, setCourseList] = useState<any[]>([]);
     const query = useQuery();
+    const location = useLocation();
+    const [t, i18n] = useTranslation('translation');
+    const toggleDarkModeHandler = () => document.body.classList.toggle('dark');
     
 
+    useIonViewWillEnter(() => {
+        getCourses(query.get('email')?? '').then(r => setCourseList(r));
+    }, [location]/*depdendency array*/);
 
-    useEffect(() => {
-        getCourses(query.get('email')?? '').then(r => console.log(r));
-    }, []);
-    
 
     //The company pre-registers the student in the DDBB
     const handleSubmit = (e:any) => {
         e.preventDefault();
+        console.log('array', courseList)
         const student:EarlyStudent = {
             email,
             role,
@@ -36,37 +47,47 @@ const EarlyStudentRegister: React.FC = () => {
     }
     
     return (
-        <IonPage /*className={ styles.loginPage }*/>
+        <IonPage>
 			<IonHeader>
                 <IonToolbar>
-                    <IonTitle>Register a New Student</IonTitle>
+                    <IonItem lines='none'>
+                        <IonImg src={PreBoot} alt="pre-boot-logo" className="header__logo"/>
+                        <IonTitle className="header__title">PRE-BOOT</IonTitle>
+                    </IonItem>
+                    <IonIcon slot="end" icon={Sun} />
+                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+                    <IonIcon slot="end" icon={moon} className="ion-padding-end"/>
+                    <IonButton size='small' className="es-button__language ion-padding-start" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
+                    <IonButton size='small' className="en-button__language ion-padding-end" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
                 </IonToolbar>
             </IonHeader>
-			<IonContent fullscreen>
-                <IonGrid className="ion-padding">
+			<IonContent fullscreen className='content-background'>
+                <IonGrid>
                     {showRegistration ?
                     <IonRow>
                         <IonCol>
-                            <IonLabel position="floating">Student Registered Successfully</IonLabel>
+                            <IonTitle className='registered-message'>{t('specific.early-student-register.registered-message')}</IonTitle>
                         </IonCol>
                     </IonRow>
                     : ''}
-                    <IonRow>
-                        <IonCol>
-                            <IonIcon
-                            style={{ fontSize: "120px", color: "#0040ff" }}
-                            icon={Key}
-                            />
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='1'>
+                           <IonImg src={RegisterLogo} alt="register-logo" className="register__logo"/>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
+                                <IonTitle className="form-title ion-padding-start">{t('specific.early-student-register.title')}</IonTitle>
+                        </IonCol>
+                    </IonRow>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
                             <IonItem>
-                            <IonLabel position="floating"> Email</IonLabel>
+                            <IonLabel position="floating">{t('specific.early-student-register.email')}</IonLabel>
                             <IonInput
                                 type="email"
                                 name='email'
-                                placeholder="Enter your email"
+                                placeholder={t('specific.early-student-register.email-placeholder')}
                                 onIonChange={(e:any) => setEmail(e.target.value)}
                                 value={email}
                                 >
@@ -74,10 +95,10 @@ const EarlyStudentRegister: React.FC = () => {
                             </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
                         <IonItem>
-                            <IonLabel>Select user rol</IonLabel>
+                            <IonLabel>{t('specific.early-student-register.role')}</IonLabel>
                             <IonSelect interface="popover" name='role' onIonChange={(e:any) => setRole(e.target.value)}>
                                 <IonSelectOption value="admin">Admin</IonSelectOption>
                                 <IonSelectOption value="teacher">Teacher</IonSelectOption>
@@ -86,28 +107,28 @@ const EarlyStudentRegister: React.FC = () => {
                         </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <IonItem>
-                            <IonLabel position="floating"> Bootcamp</IonLabel>
-                            <IonInput
-                                type="text"
-                                name='bootcamp'
-                                placeholder="Enter the ID of the bootcamp"
-                                onIonChange={(e:any) => setBootcamp(e.target.value)}
-                                value={bootcamp}
-                                >
-                            </IonInput>
-                            </IonItem>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
+                        <IonItem>
+                            <IonLabel>{t('specific.early-student-register.course')}</IonLabel>
+                            <IonSelect interface="popover" name='course' onIonChange={(e:any) => setBootcamp(e.target.value)}>
+                                {courseList.map((c,i) => <IonSelectOption key={i} value={c._id}>{c.name}</IonSelectOption>)}
+                            </IonSelect>
+                        </IonItem>
                         </IonCol>
                     </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <IonButton expand="block" onClick={handleSubmit}>Register</IonButton>
+                    <IonRow className="ion-justify-content-center">
+                        <IonCol size='4'>
+                            <IonButton className='register__button' expand="block" onClick={handleSubmit}>{t('specific.early-student-register.button')}</IonButton>
                         </IonCol>
                     </IonRow>
                 </IonGrid>
 			</IonContent>
+            {/* <IonFooter>
+                <IonToolbar>
+                    <IonTitle>Footer</IonTitle>
+                </IonToolbar>
+            </IonFooter> */}
 		</IonPage>
     )
 }

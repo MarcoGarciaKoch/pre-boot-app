@@ -1,3 +1,65 @@
-.background {
-    --background: url('../../assets/images/codebackground.jpg') 0 0/100% 100% no-repeat;
+.content-background {
+    --background: url('../../assets/images/fondo-landing2.jpg') 0 0/100%;
+    --padding-top: 15vh;
+    --padding-bottom: 15vh;
+    --font-family: Inconsolata !important;
 }
+
+.es-button__language, .en-button__language {
+    --background: var(--ion-color-tertiary);
+}
+
+.info-main__container {
+    --background: #ffffff6c;
+}
+
+
+.header__logo {
+    width: 3rem;
+}
+
+.header__title {
+    font-size: 1.5rem;
+    color: #615f5f;
+}
+
+.title-main-info{ 
+    --color: #ffffff;
+    --font-size: 2rem;
+}
+
+.card-background {
+    --background: #ffffffa4;
+}
+
+.card-header__container {
+    --background: #ffffff30;
+}
+
+.card-title {
+    --color: #615f5f;
+}
+
+.badge {
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    border-radius: 25%;
+    background-color: var(--ion-color-tertiary);
+}
+
+.email__box {
+    --background: #ffffffa4;
+    border-radius: 5px;
+}
+
+.email-title{
+    --color: #615f5f;
+}
+
+.more-info__button {
+    --background: var(--ion-color-secondary);
+    --color: #ffffff;
+}
+

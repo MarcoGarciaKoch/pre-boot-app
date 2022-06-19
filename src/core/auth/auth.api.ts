@@ -13,8 +13,7 @@ const generateAuthPostRequest = (user:RegisterUser | LoginUser) => (
 
 // Api call to validate token for early student and add it as a student to the course. It return if the call was ok or not.
 export const validateEarlyStudentTokenAPI = async (token:string) => {
-    const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/early-student/validate?token=${token}`);
-    return res;
+    return await fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/early-student/validate?token=${token}`);
 }  
 
 /**

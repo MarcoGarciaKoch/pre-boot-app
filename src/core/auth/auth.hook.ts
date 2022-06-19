@@ -3,7 +3,7 @@ import { useState } from "react";
 import { AUTH_STORAGE_KEY } from "./auth.utils";
 import { RegisterUser, LoginUser } from "./auth.model";
 import { useIonLoading } from "@ionic/react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 /**
  * In charge of whole authentication management
@@ -27,15 +27,13 @@ export const useAuth = () => {
     const [isAuth, updateIsAuth] = useState(sessionStorage.getItem(AUTH_STORAGE_KEY) !== null);
     const [present, dismiss] = useIonLoading();
     const [accountValidated, updateAccountValidated] = useState(false);
-    const [studentKnownData, setStudentKnownData] = useState({});
 
 
     const validateEarlyStudent = async (token:string) => {
         present(); // loading mode on
         const res = await validateEarlyStudentTokenAPI(token);
-        setStudentKnownData(await res.json());
         dismiss(); // loading mode off
-        return res;
+        return res.json();
     }
 
     const register = async (user: RegisterUser) => {
@@ -45,7 +43,7 @@ export const useAuth = () => {
     }
 
     const validate = async (token: string) => {
-        present(); // loading mode on
+        present();// loading mode on
         const res = await validateTokenAPI(token);
         res.ok ? updateAccountValidated(true) : updateAccountValidated(false); 
         dismiss(); // When API call finishes, loading mode off
@@ -62,7 +60,6 @@ export const useAuth = () => {
     return {
         isAuth,
         validateEarlyStudent,
-        studentKnownData,
         register,
         login,
         validate,
@@ -73,6 +70,6 @@ export const useAuth = () => {
 
 
 export const useQuery = () => {
-    const query = new URLSearchParams(useLocation().search);
-    return query
+    const { search } = useLocation();
+    return new URLSearchParams(search);
 }

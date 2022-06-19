@@ -1,7 +1,7 @@
 import { registerAPI, getCoursesAPI } from "./earlyStudentAuth.api";
 import { EarlyStudentRegister } from "./earlyStudentAuth.model";
 import { useIonLoading } from "@ionic/react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 /**
  * In charge of whole authentication management
@@ -33,9 +33,8 @@ export const useEarlyStudentAuth = () => {
     const getCourses = async (email:string) => {
         present(); // loading mode on
         const res = await getCoursesAPI(email); // Call API getCourses function
-        console.log(res)
         dismiss(); // When API call finishes, loading mode off
-        return res
+        return res.json()
     }
 
     return {
@@ -47,6 +46,6 @@ export const useEarlyStudentAuth = () => {
 
 
 export const useQuery = () => {
-    const query = new URLSearchParams(useLocation().search);
-    return query
+    const { search } = useLocation();
+    return new URLSearchParams(search);
 }
