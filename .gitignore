@@ -27,6 +27,6 @@ yarn-error.log*
 # Optional eslint cache
 .eslintcache
 
-
-# env files
+# dotenv environment variables file
 .env
+.env.test
