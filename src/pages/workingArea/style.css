@@ -1,0 +1,9 @@
+
+.content__container {
+    --height: calc(100vh - 200px);
+}
+
+.working-area-content-background {
+    /* --background: url('../../assets/images/fondo-gradient.jpg') 0 0/100%; */
+    --font-family: Inconsolata !important;
+}

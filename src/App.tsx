@@ -9,6 +9,8 @@ import EarlyStudentRegister from './pages/earlyStudentRegister/index';
 import WorkingArea from './pages/workingArea/index';
 import Tabs from './pages/tabs/index';
 import NotFound from './pages/notFound/index';
+import Dashboard from './pages/dashboard';
+import RequireAuth from './core/auth/auth.component';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,16 +38,18 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/" render={() => <Redirect to="/landing"/>} />
-          <Route exact path="*" render={() => <Redirect to="/404"/>} />
+          <Route exact path="/" render={() => <Redirect to="/login"/>} />
           <Route exact path="/landing" component={LandingPage} />
-          <Route exact path="/login" component={Login}/>
+          <Route exact path="/early-student-register" component={EarlyStudentRegister}/>
           <Route exact path="/register" component={Register}/>
           <Route exact path="/validate" component={Validate}/>
-          <Route exact path="/early-student-register" component={EarlyStudentRegister}/>
-          <Route exact path="/working-area" component={WorkingArea}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/working-area/:id" component={WorkingArea}/>
           <Route exact path="/tabs" component={Tabs}/>
-          <Route path="/404" component={NotFound} />
+          <Route>
+            <NotFound />
+          </Route>
         </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

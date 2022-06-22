@@ -9,18 +9,27 @@
 
 .message {
     --color: #ffffff;
+    text-align: center;
 
 }
 
-.link-login {
+.link-to-login {
+    display: block;
+    text-align: center;
+}
+
+.text-login {
     font-size: 1.2rem;
+    align-self: center;
 }
 
 
 .alert__image {
     width: 15rem;
+    margin: auto;
 }
 
 .obama_gif {
     width: 40rem;
+    margin: auto;
 }

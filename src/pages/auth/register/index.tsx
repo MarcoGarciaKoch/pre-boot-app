@@ -31,6 +31,11 @@ const Register: React.FC = () => {
 
 
     useIonViewWillEnter(() => {
+        if (isAuth) { 
+            // Redirect to the /dashboard page when we are already registered and logged in.
+            history.push("/login");
+        }
+    
         validateEarlyStudent(query.get('token')??'').then(r => setStudentKnownData(r));
     }, [location]/*depdendency array*/);
 
@@ -46,11 +51,6 @@ const Register: React.FC = () => {
             bootcamp: studentKnownData.bootcamp,
         };
         register(user).then(() => updateShowEmail(true));
-    }
-
-    if (isAuth) { 
-        // Redirect to the /dashboard page when we are already registered and logged in.
-        history.push("/dashboard");
     }
 
     

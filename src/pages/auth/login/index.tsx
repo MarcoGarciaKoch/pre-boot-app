@@ -1,7 +1,6 @@
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, IonToolbar, 
-        IonItem, IonLabel, IonInput, IonTitle, IonImg, IonToggle } from '@ionic/react';
+        IonItem, IonLabel, IonInput, IonTitle, IonImg, IonToggle, useIonViewDidEnter } from '@ionic/react';
 import { useAuth } from "../../../core/auth/auth.hook";
-import { personCircle } from 'ionicons/icons';
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import './style.css';
@@ -20,22 +19,29 @@ const Login: React.FC = () => {
     const [t, i18n] = useTranslation('translation');
     const toggleDarkModeHandler = () => document.body.classList.toggle('dark');
     
+    
 
-// if (isAuth) { 
-//     // Redirect to the /dashboard page when we are already logged in.
-//     history.push("/dashboard");
-// }   
+    useIonViewDidEnter(() => {
+        if (isAuth) { 
+            // Redirect to the /dashboard page when we are already logged in.
+            history.push("/dashboard");
+        }
+    }, []/*depdendency array*/);
 
-const handleLogin = (e: any) => {
-                e.preventDefault();
-                const user = {
-                    // 
-                    email: email,
-                    password: password
-                };
-                login(user);
-                if(isAuth) history.push("/dashboard"); // after login, it will redirect to tab1
-    }
+
+    const handleLogin = (e: any) => {
+                    e.preventDefault();
+                    const user = {
+                        // 
+                        email: email,
+                        password: password
+                    };
+                    login(user);
+                    if (isAuth) {
+                        // after login, it will redirect to dashboard page
+                        history.push("/dashboard"); 
+                    } 
+        }
 
 	return (
 		<IonPage>

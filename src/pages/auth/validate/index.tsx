@@ -15,14 +15,14 @@ const Validate: React.FC = () => {
     
     
     useIonViewWillEnter(() => {
+        if (isAuth) { 
+            // if already autheticated, it will redirect to main page
+           history.push("/login");
+        }
+        
         validate(query.get('token')?? '');
     }, [location]/*depdendency array*/);
 
-
-    if (isAuth) { 
-        // if already autheticated, it will redirect to main page
-       history.push("/dashboard");
-    }
  
 
     return (
@@ -42,7 +42,7 @@ const Validate: React.FC = () => {
                                     </IonRow>
                                     <IonRow className="ion-justify-content-center">
                                         <IonCol size='10'>
-                                        <Link to={'/login'}><IonText className='link-login ion-padding-start' color="medium">Go to Login</IonText></Link>
+                                        <Link className='link-to-login' to={'/login'}><IonText className='text-login ion-padding-start' color="medium">Go to Login</IonText></Link>
                                         </IonCol>
                                     </IonRow>
                                 </IonGrid>
@@ -64,7 +64,7 @@ const Validate: React.FC = () => {
                                     </IonRow>
                                     <IonRow className="ion-justify-content-center">
                                         <IonCol size='10'>
-                                        <Link to={'/login'}><IonText className='link-login ion-padding-start' color="medium">Go back to Login</IonText></Link>
+                                        <Link className='link-to-login' to={'/login'}><IonText className='text-login ion-padding-start' color="medium">Go back to Login</IonText></Link>
                                         </IonCol>
                                     </IonRow>
                                 </IonGrid>
