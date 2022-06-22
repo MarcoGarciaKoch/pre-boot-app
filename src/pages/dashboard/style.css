@@ -1,0 +1,57 @@
+
+.es-button__language, .en-button__language {
+    --background: var(--ion-color-tertiary);
+}
+
+.header__logo {
+    width: 3rem;
+}
+
+.header__title {
+    font-size: 1.5rem;
+    color: #615f5f;
+}
+
+.logout-button {
+    width: 2rem;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.logout-button:active {
+    transform: scale(0.95);
+
+}
+
+.dashborad-content-background {
+    --background: url('../../assets/images/fondo-gradient.jpg') 0 0/100%;
+    --font-family: Inconsolata !important;
+}
+
+.user-info__bar {
+    margin: 16px 25px 0px 25px;
+}
+
+.progress-bar {
+    height: 25px;
+    width: 15%;
+    --background: #d451d44a;
+}
+
+.lesson-list__container {
+    height: calc(100vh - 225px);
+}
+
+/* .lesson-avatar {
+    background: var(--ion-color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color : #ffffff;
+} */
+
+.chat__container {
+    height: calc(100vh - 225px);
+}

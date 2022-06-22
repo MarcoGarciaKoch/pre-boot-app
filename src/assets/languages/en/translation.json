@@ -1,0 +1,84 @@
+{
+        "general": {
+            "header": {
+
+            },
+            "footer": {
+    
+            },
+            "tab": {
+                "header": {
+                    "title": "Tab 1"
+                },
+                "body": {
+                    "head": "Tab 1 page",
+                    "content": "Explore UI Components"
+                },
+                "footer": {
+                    "buttonOne": "Tab 1",
+                    "buttonTwo": "Tab 2",
+                    "buttonThree": "Tab 3"
+                }
+            }
+        },
+        "specific": {
+            "landing": {
+                "banner-title": "Offer your students the best pre-bootcamp experience",
+                "card-one": {
+                    "title": "Create your own course system",
+                    "content": "Design your own courses in a completely personalized environment."
+                },
+                "card-two": {
+                    "title": "Teachers and students together in the same place",
+                    "content": "Interaction will occur within pre-boot platform."
+                },
+                "card-three": {
+                    "title": "Real time chat",
+                    "content": "Generate live and direct communication between your students."
+                },
+                "card-four": {
+                    "title": "Follow the progress of your students.",
+                    "content": "Track the stage of the course at what each of your students is."
+                },
+                "email": {
+                    "title": "Email",
+                    "placeholder": "Leave your email",
+                    "button": "GET MORE INFO",
+                    "sentEmailMessage": "We have sent you an email, please check your mailbox to get more info"
+                }
+            },
+            "early-student-register": {
+                "registered-message": "Student Registered Successfully",
+                "title": "Register New Student",
+                "email": "Email",
+                "email-placeholder": "Enter the user email",
+                "role": "Select User Role",
+                "course": "Select Course",
+                "button": "REGISTER"
+            },
+            "register": {
+                "registered-message": "We have sent you an email, please check your mailbox to validate your account",
+                "name": "Name",
+                "name-placeholder": "Enter your name",
+                "lastname": "Last Name",
+                "lastname-placeholder": "Enter your last name",
+                "email": "Email",
+                "password": "Password",
+                "password-placeholder": "Enter your password",
+                "course": "Your Course",
+                "button": "REGISTER"
+            },
+            "login": {
+                "email": "Email",
+                "email-placeholder": "Enter your Email",
+                "password": "Password",
+                "password-placeholder": "Enter your Password",
+                "extra-info": "By clicking LOGIN, your agree our",
+                "policy": "Poicy",
+                "and": "and",
+                "terms": "Conditions",
+                "use" : "of Use",
+                "button": "LOGIN"
+            }
+        }
+}

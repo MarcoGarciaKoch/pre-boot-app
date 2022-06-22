@@ -1,0 +1,35 @@
+
+.background {
+    --background: url('../../../assets/images/fondo-gradient.jpg') 0 0/100%;
+    --padding-top: 12vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+
+.message {
+    --color: #ffffff;
+    text-align: center;
+
+}
+
+.link-to-login {
+    display: block;
+    text-align: center;
+}
+
+.text-login {
+    font-size: 1.2rem;
+    align-self: center;
+}
+
+
+.alert__image {
+    width: 15rem;
+    margin: auto;
+}
+
+.obama_gif {
+    width: 40rem;
+    margin: auto;
+}

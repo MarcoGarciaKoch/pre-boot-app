@@ -1,0 +1,20 @@
+
+
+.lesson-avatar {
+    background: var(--ion-color-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color : #ffffff;
+}
+
+.lesson__container {
+    cursor: pointer;
+}
+
+.lesson__container-opaque {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

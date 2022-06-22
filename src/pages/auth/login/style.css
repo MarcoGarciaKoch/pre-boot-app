@@ -1,0 +1,35 @@
+.es-button__language, .en-button__language {
+    --background: var(--ion-color-tertiary);
+}
+
+.content-background {
+    --background: url('../../../assets/images/fondo-gradient.jpg') 0 0/100%;
+    --padding-top: 12vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+.header__logo {
+    width: 3rem;
+}
+
+.header__title {
+    font-size: 1.5rem;
+    color: #615f5f;
+}
+
+.login__logo{
+    width: 10rem;
+    margin-bottom: 30px;
+}
+
+.extra-info {
+    color: #908f8f;
+}
+
+
+.login__button {
+    --background: var(--ion-color-secondary);
+    --color: #ffffff;
+}
+

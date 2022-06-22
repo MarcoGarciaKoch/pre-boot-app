@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "monaco-themes.d.ts"  ]
 }

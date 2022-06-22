@@ -1,0 +1,84 @@
+{
+        "general": {
+            "header": {
+
+            },
+            "footer": {
+    
+            },
+            "tab": {
+                "header": {
+                    "title": "Tabla 1"
+                },
+                "body": {
+                    "head": "Página Tabla 1",
+                    "content": "Explora Componentes UI"
+                },
+                "footer": {
+                    "buttonOne": "Tabla 1",
+                    "buttonTwo": "Tabla 2",
+                    "buttonThree": "Tabla 3"
+                }
+            }
+        },
+        "specific": {
+            "landing": {
+                "banner-title": "Ofrece la mejor experiencia pre-bootcamp a tus alumnos",
+                "card-one": {
+                    "title": "Crea tu propio sistema de cursos",
+                    "content": "Diseña tus propios cursos con un entorno de trabajo personalizado."
+                },
+                "card-two": {
+                    "title": "Tus profesores y alumnos en un solo entorno",
+                    "content": "Alumnos y profesores podrán interacturar desde un mismo lugar."
+                },
+                "card-three": {
+                    "title": "Chat en tiempo real",
+                    "content": "Genera una comunicación directa entre alumnos."
+                },
+                "card-four": {
+                    "title": "Sigue el progreso de cada alumno",
+                    "content": "Podrás ver en que etapa del curso se encuetra cada alumno"
+                },
+                "email": {
+                    "title": "Email",
+                    "placeholder": "Déjanos tu email",
+                    "button": "MAS INFO",
+                    "sentEmailMessage": "Te hemos mandado un email, revisa tu bandeja para más información"
+                }
+            },
+            "early-student-register": {
+                "registered-message": "Estudiante Registrado Exitosamente",
+                "title": "Registra Nuevo Estudiante",
+                "email": "Email",
+                "email-placeholder": "Ingresa el email del usuario",
+                "role": "Selecciona el Rol del usuario",
+                "course": "Selecciona Curso",
+                "button": "REGISTRAR"
+            },
+            "register": {
+                "registered-message": "Te hemos enviado un email. Por favor, revisa tu bandeja de entrada para validar tu cuenta",
+                "name": "Nombre",
+                "name-placeholder": "Escribe tu nombre",
+                "lastname": "Apellidos",
+                "lastname-placeholder": "Escribe tus apellidos",
+                "email": "Email",
+                "password": "Contraseña",
+                "password-placeholder": "Escribe tu contraseña",
+                "course": "Tu Curso",
+                "button": "REGISTRAR"
+            },
+            "login": {
+                "email": "Email",
+                "email-placeholder": "Ingresa tu email",
+                "password": "Contraseña",
+                "password-placeholder": "Ingresa tu contraseña",
+                "extra-info": "Haciendo click en LOGIN, aceptas nuestros",
+                "policy": "Términos",
+                "and": "y",
+                "terms": "Condiciones",
+                "use": "de Uso",
+                "button": "LOGIN"
+            }
+        }
+}
