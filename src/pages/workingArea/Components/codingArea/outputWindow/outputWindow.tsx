@@ -1,3 +1,4 @@
+import { IonTitle, IonItem } from "@ionic/react";
 
 
 
@@ -42,14 +43,14 @@ const OutputWindow = ({ outputDetails }: any) => {
 
 
     return (
-      <>
-        <h1 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
+      <IonItem lines="none" className="ion-margin-bottom">
+        <IonTitle className="ion-padding-top">
           Output
-        </h1>
-        <div className="w-full h-56 bg-[#1e293b] rounded-md text-white font-normal text-sm overflow-y-auto">
+        </IonTitle>
+        <IonItem lines="none">
           {outputDetails ? <>{getOutput()}</> : null}
-        </div>
-      </>
+        </IonItem>
+      </IonItem>
     );
   };
   

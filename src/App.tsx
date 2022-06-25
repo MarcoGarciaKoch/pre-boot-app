@@ -3,14 +3,17 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Login from './pages/auth/login/index';
 import Register from './pages/auth/register/index';
+import ConfirmEmail from './pages/confirmEmail/index';
 import Validate from './pages/auth/validate/index';
 import LandingPage from './pages/landingPage/index';
 import EarlyStudentRegister from './pages/earlyStudentRegister/index';
+import InvitationSent from './pages/invitationSent/index';
 import WorkingArea from './pages/workingArea/index';
 import Tabs from './pages/tabs/index';
 import NotFound from './pages/notFound/index';
 import Dashboard from './pages/dashboard';
-import RequireAuth from './core/auth/auth.component';
+import ChatProvider from './context/Chat/chat.provider';
+import CourseStudentDataProvider from './context/CourseStudentData/courseStudentData.provider'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,20 +40,37 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-        <IonRouterOutlet>
-          <Route exact path="/" render={() => <Redirect to="/login"/>} />
-          <Route exact path="/landing" component={LandingPage} />
-          <Route exact path="/early-student-register" component={EarlyStudentRegister}/>
-          <Route exact path="/register" component={Register}/>
-          <Route exact path="/validate" component={Validate}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/working-area/:id" component={WorkingArea}/>
-          <Route exact path="/tabs" component={Tabs}/>
-          <Route>
-            <NotFound />
-          </Route>
-        </IonRouterOutlet>
+      <IonRouterOutlet>
+        <Route exact path="/" render={() => <Redirect to="/login" />} />
+        <Route exact path="/landing" component={LandingPage} />
+        <Route exact path="/early-student-register" component={EarlyStudentRegister} />
+        <Route exact path="/invitation-sent" component={InvitationSent} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/confirm-email" component={ConfirmEmail} />
+        <Route exact path="/validate" component={Validate} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/student">
+          <CourseStudentDataProvider>
+            <ChatProvider>
+              <IonRouterOutlet>
+                  <Route path='/student/dashboard'>
+                    <Dashboard></Dashboard>
+                  </Route>
+                  <Route path='/student/working-area/:id'>
+                    <WorkingArea></WorkingArea>
+                  </Route>
+                  <Route>
+                    <NotFound />
+                  </Route>
+              </IonRouterOutlet>
+            </ChatProvider>
+          </CourseStudentDataProvider>
+        </Route>
+        <Route exact path="/tabs" component={Tabs} />
+        <Route>
+          <NotFound />
+        </Route>
+      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );

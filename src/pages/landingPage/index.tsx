@@ -1,5 +1,5 @@
 import { IonHeader, IonImg, IonPage, IonToolbar, IonIcon, IonItem, IonCard, IonCardContent,
-         IonContent, IonButton, IonLabel, IonInput, IonGrid, IonRow, IonCol, IonTitle, IonBadge } from "@ionic/react";
+         IonContent, IonButton, IonLabel, IonInput, IonGrid, IonRow, IonCol, IonTitle, IonBadge, IonText } from "@ionic/react";
 import './style.css';
 import { useState } from "react";
 import { usePotentialClient } from '../../core/potentialClient/potentialClient.hook';
@@ -40,7 +40,7 @@ const LandingPage: React.FC<RouteComponentProps> = ({history}) => {
                <IonToolbar>
                     <IonItem lines="none">
                         <IonImg src={PreBoot} alt="pre-boot-logo" className="header__logo"/>
-                        <IonTitle className="header__title">PRE-BOOT</IonTitle>
+                        <IonTitle className="header__title-landing">PRE-BOOT</IonTitle>
                     </IonItem>
                     <IonButton size='small' className="es-button__language" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
                     <IonButton size='small' className="en-button__language" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
@@ -51,7 +51,7 @@ const LandingPage: React.FC<RouteComponentProps> = ({history}) => {
             <IonGrid>
                 <IonRow className="ion-justify-content-around">
                     <IonCol size="12">
-                        <IonTitle className="title-main-info ion-text-sm-wrap">{t('specific.landing.banner-title')}</IonTitle>
+                        <IonTitle className="title-main-info ion-text-wrap">{t('specific.landing.banner-title')}</IonTitle>
                     </IonCol>
                 </IonRow>
                 <IonRow className="ion-justify-content-evenly">
@@ -59,7 +59,7 @@ const LandingPage: React.FC<RouteComponentProps> = ({history}) => {
                         <IonCard className="card-background">
                             <IonItem className="card-header__container">
                                 <IonBadge className="ion-margin-end badge" color="primary">1</IonBadge>
-                                <IonLabel className="card-title">{t('specific.landing.card-one.title')}</IonLabel>
+                                <IonLabel className="card-title"><IonText>{t('specific.landing.card-one.title')}</IonText></IonLabel>
                             </IonItem>
 
                             <IonCardContent className="ion-text-wrap">

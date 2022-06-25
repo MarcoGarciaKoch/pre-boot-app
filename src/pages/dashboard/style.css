@@ -28,13 +28,13 @@
     --font-family: Inconsolata !important;
 }
 
-.user-info__bar {
-    margin: 16px 25px 0px 25px;
+.progress__title, .progress__percentage {
+    font-size: 1.25rem;
 }
 
 .progress-bar {
     height: 25px;
-    width: 15%;
+    width: 42%;
     --background: #d451d44a;
 }
 
@@ -42,16 +42,18 @@
     height: calc(100vh - 225px);
 }
 
-/* .lesson-avatar {
-    background: var(--ion-color-secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color : #ffffff;
-} */
+
 
 .chat__container {
     height: calc(100vh - 225px);
+    /* display: flex;
+    align-items: ; */
+}
+
+
+.send-message__container {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid #dfdcdc;
 }

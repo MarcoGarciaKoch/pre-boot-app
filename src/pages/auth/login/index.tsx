@@ -24,7 +24,7 @@ const Login: React.FC = () => {
     useIonViewDidEnter(() => {
         if (isAuth) { 
             // Redirect to the /dashboard page when we are already logged in.
-            history.push("/dashboard");
+            history.push("/student/dashboard");
         }
     }, []/*depdendency array*/);
 
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
                     login(user);
                     if (isAuth) {
                         // after login, it will redirect to dashboard page
-                        history.push("/dashboard"); 
+                        history.push("/student/dashboard"); 
                     } 
         }
 
@@ -98,7 +98,7 @@ const Login: React.FC = () => {
                             <p className='extra-info' style={{ fontSize: "small" }}>
                             {t('specific.login.extra-info')} <a href="#">{t('specific.login.policy')}</a> {t('specific.login.and')} <a href="#">{t('specific.login.terms')}</a> {t('specific.login.use')}.
                             </p>
-                            <IonButton className='register__button' expand="block" onClick={handleLogin}>
+                            <IonButton className='login__button' expand="block" onClick={handleLogin}>
                             Login
                             </IonButton>
                         </IonCol>
