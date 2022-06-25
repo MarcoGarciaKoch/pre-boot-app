@@ -18,7 +18,6 @@ import './style.css';
 
 const Register: React.FC = () => {
     const { register, isAuth, validateEarlyStudent } = useAuth();
-    const [showEmailConfirm, updateShowEmail] = useState(false);
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
@@ -28,6 +27,7 @@ const Register: React.FC = () => {
     const location = useLocation();
     const toggleDarkModeHandler = () => document.body.classList.toggle('dark');
     const [t, i18n] = useTranslation('translation');
+    const [dark, setDark] = useState(false);
 
 
     useIonViewWillEnter(() => {
@@ -50,7 +50,7 @@ const Register: React.FC = () => {
             password,
             bootcamp: studentKnownData.bootcamp,
         };
-        register(user).then(() => updateShowEmail(true));
+        register(user).then(() => history.push("/confirm-email"));
     }
 
     
@@ -63,28 +63,21 @@ const Register: React.FC = () => {
                         <IonTitle className="header__title">PRE-BOOT</IonTitle>
                     </IonItem>
                     <IonIcon slot="end" icon={Sun} />
-                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} onClick={() => setDark(!dark)}/>
                     <IonIcon slot="end" icon={moon} className="ion-padding-end"/>
                     <IonButton size='small' className="es-button__language ion-padding-start" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
                     <IonButton size='small' className="en-button__language ion-padding-end" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
                 </IonToolbar>
             </IonHeader>
-			<IonContent fullscreen className='content-background'>
+			<IonContent fullscreen scrollY={false} className={dark ? 'dark-content-background' : 'light-content-background'}>
                 <IonGrid className="ion-padding">
-                    {showEmailConfirm ?
-                    <IonRow>
-                        <IonCol>
-                            <IonTitle className="registered-message">{t('specific.register.registered-message')}</IonTitle>
-                        </IonCol>
-                    </IonRow>
-                    : ''}
                     <IonRow className="ion-justify-content-center">
-                        <IonCol size='1'>
+                        <IonCol size='1' sizeXs='2' sizeSm='1' sizeMd='1'>
                            <IonImg src={RegisterUserLogo} alt="register-user-logo" className="register-user__logo"/>
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol  size='4'>
+                        <IonCol  sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                             <IonLabel position="floating">{t('specific.register.name')}</IonLabel>
                             <IonInput
@@ -98,7 +91,7 @@ const Register: React.FC = () => {
                         </IonCol>
                     </IonRow >
                     <IonRow className="ion-justify-content-center">
-                        <IonCol  size='4'>
+                        <IonCol sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                             <IonLabel position="floating">{t('specific.register.lastname')}</IonLabel>
                             <IonInput
@@ -112,7 +105,7 @@ const Register: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol  size='4'>
+                        <IonCol  sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                             <IonLabel position="floating" >{t('specific.register.email')}</IonLabel>
                             <IonInput
@@ -126,7 +119,7 @@ const Register: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol  size='4'>
+                        <IonCol  sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                             <IonLabel position="floating">{t('specific.register.password')}</IonLabel>
                             <IonInput
@@ -140,7 +133,7 @@ const Register: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol  size='4'>
+                        <IonCol  sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                                 <IonLabel position="floating">{t('specific.register.course')}</IonLabel>
                                 <IonInput
@@ -154,7 +147,7 @@ const Register: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol size='4'>
+                        <IonCol sizeXs='6' sizeSm='5' sizeMd='4' sizeLg='3' sizeXl='2'>
                             <IonButton className='register__button' expand="block" onClick={handleSubmit}>{t('specific.register.button')}</IonButton>
                         </IonCol>
                     </IonRow>

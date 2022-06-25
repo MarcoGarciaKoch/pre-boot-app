@@ -2,7 +2,7 @@ import ReactMarkDown from "react-markdown";
 import gfm from "remark-gfm";
 import { useIonViewWillEnter } from "@ionic/react";
 import { useState } from "react";
-import './style.css'
+import './style.css';
 
 const LessonMarkDown = ({markDownId}:any) => {
     const [markdown, setMarkdown] = useState('');

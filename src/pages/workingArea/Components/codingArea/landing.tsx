@@ -8,7 +8,7 @@ import CustomInput from './customInput/customInput';
 import OutputDetails from './outputDetails/outputDetails';
 import ThemeDropdown from './themeDropdown/themeDropdown';
 import LanguagesDropdown from './languageDropdown/languagesDropdown';
-import { IonContent, IonItem, IonLabel, useIonToast } from "@ionic/react";
+import { IonButton, IonContent, IonItem, IonLabel, useIonToast } from "@ionic/react";
 import { config } from '../../../../config';
 import './style.css';
 
@@ -162,18 +162,15 @@ const Landing = () => {
   
   return (
     <IonContent>
-      {/* <div className="flex flex-row"> */}
-        <IonItem lines="none" fill="solid" className="language-dropdown__container">
+        <IonItem lines="none" className="language-dropdown__container ion-justify-content-between">
           <IonLabel>Select Your Programming Language</IonLabel>
           <LanguagesDropdown onSelectChange={onSelectChange} />
         </IonItem>
-        <IonItem lines="none" fill="solid" className="theme-dropdown__container">
+        <IonItem lines="none"  className="theme-dropdown__container ion-justify-content-between">
           <IonLabel>Select Your Theme</IonLabel>
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </IonItem>
-      {/* </div> */}
-      <div className="flex flex-row space-x-4 items-start px-4 py-4">
-        <div className="flex flex-col w-full h-full justify-start items-end">
+        <div>
           <CodeEditorWindow
             code={code}
             onChange={onChange}
@@ -181,24 +178,21 @@ const Landing = () => {
             theme={theme}
           />
         </div>
-
-        <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
-          <OutputWindow outputDetails={outputDetails} them />
-          <div className="flex flex-col items-end">
-            <CustomInput
-              customInput={customInput}
-              setCustomInput={setCustomInput}
-            />
-            <button
-              onClick={handleCompile}
-              disabled={!code}
-            >
-              {processing ? "Processing..." : "Compile and Execute"}
-            </button>
-          </div>
-          {outputDetails && <OutputDetails outputDetails={outputDetails} />}
-        </div>
-      </div>
+        <OutputWindow outputDetails={outputDetails}></OutputWindow>
+        <CustomInput
+          customInput={customInput}
+          setCustomInput={setCustomInput}
+        >
+        </CustomInput>
+        <IonButton
+          color='secondary'
+          className="ion-padding"
+          onClick={handleCompile}
+          disabled={!code}
+        >
+          {processing ? "Processing..." : "CHECK YOUR CODE"}
+        </IonButton>
+        {outputDetails && <OutputDetails outputDetails={outputDetails} />}
     </IonContent>
   );
 };

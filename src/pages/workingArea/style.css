@@ -4,6 +4,33 @@
 }
 
 .working-area-content-background {
-    /* --background: url('../../assets/images/fondo-gradient.jpg') 0 0/100%; */
+    --background: url('../../assets/images/fondo-gradient.jpg') 0 0/100%;
     --font-family: Inconsolata !important;
+}
+
+.chat__fab {
+    margin-right: 15px;
+    margin-bottom: 45px;
+}
+
+.social-media__fab {
+    margin-right: 15px;
+}
+
+.modal__container {
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.70);
+    --width: 30vw;
+    --height: 80vh
+}
+
+.modal-chat__container {
+    height: 100%;
+}
+
+.send-message__container {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid #dfdcdc;
 }

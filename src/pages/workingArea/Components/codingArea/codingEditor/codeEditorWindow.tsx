@@ -13,9 +13,9 @@ const CodeEditorWindow: React.FC<any> = ({ onChange, language, code, theme }:any
   };
 
   return (
-    <IonItem className="editor__container">
+    <IonItem lines="none" className="editor__container">
       <Editor
-        height="50vh"
+        height="40vh"
         width={`100%`}
         language={language || "javascript"}
         value={value}

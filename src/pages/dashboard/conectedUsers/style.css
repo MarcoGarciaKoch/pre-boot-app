@@ -1,0 +1,12 @@
+
+
+.non-conected-avatars {
+    width: 10px;
+    height: 10px;
+    opacity: 0.5;
+}
+
+.conected-avatars {
+    width: 30px;
+    height: 30px;
+}

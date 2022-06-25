@@ -5,9 +5,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
     color : #ffffff;
+    width: 2rem;
+    height: 2rem;
 }
 
 .lesson__container {

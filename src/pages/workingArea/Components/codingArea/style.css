@@ -4,7 +4,8 @@
 }
 
 .language-dropdown__container {
-    margin: 0px 16px;
+    margin: 16px 16px 0px 16px;
+    border-bottom: 1px solid #cac8c8;
 }
 
 .theme-dropdown__container {

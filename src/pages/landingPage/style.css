@@ -9,6 +9,10 @@
     --background: var(--ion-color-tertiary);
 }
 
+.en-button__language {
+    margin-right: 10px;
+}
+
 .info-main__container {
     --background: #ffffff6c;
 }
@@ -16,10 +20,10 @@
 
 .header__logo {
     width: 3rem;
+    min-width: 3rem;
 }
 
-.header__title {
-    font-size: 1.5rem;
+.header__title-landing {
     color: #615f5f;
 }
 

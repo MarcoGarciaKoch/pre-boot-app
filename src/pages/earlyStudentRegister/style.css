@@ -8,8 +8,15 @@
     --color: #ffffff;
 }
 
-.content-background {
-    --background: url('../../assets/images/fondo-gradient.jpg') 0 0/100%;
+.light-content-background {
+    --background: url('../../assets/images/background-light-mode.jpg') 60% no-repeat;
+    --padding-top: 12vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+.dark-content-background {
+    --background: url('../../assets/images/background-dark-mode.jpg') 60% no-repeat;
     --padding-top: 12vh;
     --padding-bottom: 10vh;
     --font-family: Inconsolata !important;
@@ -17,6 +24,7 @@
 
 .header__logo {
     width: 3rem;
+    min-width: 3rem;
 }
 
 .header__title {
@@ -25,7 +33,17 @@
 }
 
 .register__logo{
-    width: 6rem;
+    width: 5rem;
+    margin-bottom: 30px;
+}
+
+.title__container {
+    display: flex;
+    justify-content: center;
+}
+
+.title-text-light {
+    color: #000000;
 }
 
 .form-title {
@@ -37,4 +55,11 @@
 .register__button {
     --background: var(--ion-color-secondary);
     --color: #ffffff;
+}
+
+
+@media (max-width: 650px) {
+    .header__title {
+        display: none;
+    }
 }
