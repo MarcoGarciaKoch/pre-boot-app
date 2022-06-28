@@ -1,4 +1,8 @@
 
 metrics-container {
     height: 250px;
+    display: flex;
+    font-weight: 600;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

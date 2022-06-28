@@ -37,8 +37,8 @@ const ChatMessage:any = ({message, userCourseData}:any) => {
             )
         }else if(message.type === 'coding') {
             return (
-                <IonItem lines='none' slot="start" color='warning' className='coding-message-item'>
-                    <IonLabel color="medium" className='ion-text-wrap coding-message'>{message.message}</IonLabel>
+                <IonItem lines='none' slot="start" color='success' className='coding-message-item'>
+                    <IonLabel color="light" className='ion-text-wrap coding-message'>{message.message}</IonLabel>
                 </IonItem>
             )
         }

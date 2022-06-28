@@ -18,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import { AUTH_STORAGE_KEY } from "../../core/auth/auth.utils";
 import { useAuth } from '../../core/auth/auth.hook';
 import Lesson from './markdownLesson/index';
-import { useContext, useState, useRef, useEffect  } from 'react';
+import { useContext, useState, useRef, useEffect, ChangeEvent  } from 'react';
 import { ChatContext } from '../../context/Chat/chat.context';
 import { CourseStudentDataContext } from '../../context/CourseStudentData/courseStudentData.context';
 import Chat from './Chat';
@@ -35,7 +35,6 @@ const Dashboard: React.FC = () => {
     const { usersConnected, messageList, sendMessage }:any = useContext(ChatContext); // Creates a websocket and manages data recovering from backend and messaging
     const [newMessage, setNewMessage] = useState('');
     const [dark, setDark] = useState(false);
-    const messagesEndRef = useRef<HTMLDivElement>(null);
     
     useIonViewWillEnter(() => {
         if (!isAuth) { 
@@ -44,18 +43,10 @@ const Dashboard: React.FC = () => {
         }
     },[]);
 
-    const scrollToBottom = () => {
-        if(messagesEndRef.current){
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-        }
-      }
-    
-      useEffect(() => {
-        scrollToBottom()
-      }, [messageList]);
+ 
 
 
-    const handleNewMessageChange = (e:any) => {
+    const handleNewMessageChange = (e:ChangeEvent<HTMLInputElement>) => {
         const message = e.target.value
         setNewMessage(message)
     };

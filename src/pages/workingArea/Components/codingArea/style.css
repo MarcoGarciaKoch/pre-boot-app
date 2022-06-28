@@ -25,3 +25,7 @@
     width: 200px;
     height: 80px;
 }
+
+.monaco__container{
+    background: var(--ion-color-light);
+}

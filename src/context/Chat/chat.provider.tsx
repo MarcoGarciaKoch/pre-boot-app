@@ -5,7 +5,6 @@ import { CourseStudentDataContext } from '../CourseStudentData/courseStudentData
 
 const NEW_CHAT_MESSAGE_EVENT = "chat message"; // Name of the event
 const USER__CONECTED = "user conected"; // Name of the event
-const USER__DISCONECTED = "user disconected" // Name of the event
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
 function ChatProvider({ children }: any) {
@@ -34,9 +33,7 @@ function ChatProvider({ children }: any) {
 
             // Destroys the socket reference when the connection is closed
             return () => {
-                socketRef.current.disconnect(USER__DISCONECTED, {
-                    usersConnected
-                });
+                socketRef.current.disconnect();
             };
         }
     }, [userCourseData]);
