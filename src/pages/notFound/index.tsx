@@ -7,7 +7,7 @@ const NotFound: React.FC = () => {
 
     return (
         <IonPage>
-            <IonContent>
+            <IonContent fullscreen className="background-notfound">
                 <h1>404</h1>
             </IonContent>
         </IonPage>

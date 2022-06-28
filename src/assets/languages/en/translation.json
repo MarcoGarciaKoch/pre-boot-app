@@ -48,7 +48,7 @@
                 }
             },
             "early-student-register": {
-                "registered-message": "Student Registered Successfully",
+                "registered-message": "Student Successfully Registered",
                 "title": "Register New Student",
                 "email": "Email",
                 "email-placeholder": "Enter the user email",
@@ -79,6 +79,30 @@
                 "terms": "Conditions",
                 "use" : "of Use",
                 "button": "LOGIN"
+            },
+            "dashboard": {
+                "greeting": "Welcome ",
+                "progress": "Your Progress",
+                "lessons": "LESSONS",
+                "chat": "SUPER CHAT",
+                "placeholder": "Send a message",
+                "button": "SEND",
+                "videocall": "BOOK YOUR MEETING",
+                "head": "Head Teacher",
+                "support": "Support Teacher",
+                "slot": "Book your slot",
+                "footer": {
+                    "rights": "All rights reserved",
+                    "atributions": "Legal atributions"
+                }
+            },
+            "workingArea": {
+                "language": "Programming Language",
+                "theme": "Theme",
+                "result": "RESULT",
+                "checkButton": "CHECK YOUR CODE",
+                "showButton": "SHOW RESULT",
+                "nextButton": "NEXT LESSON"
             }
         }
 }

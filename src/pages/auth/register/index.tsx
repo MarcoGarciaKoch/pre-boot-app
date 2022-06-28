@@ -1,9 +1,8 @@
 import { useAuth } from "../../../core/auth/auth.hook";
 import { useState } from "react";
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonPage, IonRow, 
-         IonSelect, IonSelectOption, IonToolbar, useIonViewWillEnter, IonImg, IonToggle } from '@ionic/react';
+         IonToolbar, useIonViewWillEnter, IonImg, IonToggle } from '@ionic/react';
 import { IonItem, IonLabel, IonInput, IonTitle } from '@ionic/react';
-import Key from '../../../assets/images/key-sharp.svg';
 import { RegisterUser } from "./register.model";
 import { useHistory } from "react-router-dom";
 import { useQuery } from '../../../core/auth/auth.hook';
