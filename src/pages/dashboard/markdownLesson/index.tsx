@@ -19,13 +19,6 @@ const Lesson = ({lesson, userCourseData}:any) => {
     const navigateToLesson = () => {
         if(lesson.order <= userCourseData.student.course.order) {
             history.push(`/student/working-area/${lesson.id}`);
-            // history.push({
-            //     pathname: '/working-area',
-            //     search: `?lesson=${lesson.id}`,  // query string
-            //     state: {  // location state
-            //     update: true, 
-            //     }
-            // })
         }
     }
 

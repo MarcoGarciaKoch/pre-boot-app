@@ -28,4 +28,5 @@
 
 .monaco__container{
     background: var(--ion-color-light);
+    margin-top: 0px;
 }

@@ -8,7 +8,7 @@ import CustomInput from './customInput/customInput';
 import OutputDetails from './outputDetails/outputDetails';
 import ThemeDropdown from './themeDropdown/themeDropdown';
 import LanguagesDropdown from './languageDropdown/languagesDropdown';
-import { IonButton, IonContent, IonItem, IonLabel, useIonToast } from "@ionic/react";
+import { IonButton, IonItem, IonLabel, useIonToast } from "@ionic/react";
 import { config } from '../../../../config';
 import './style.css';
 import { useNextLesson } from '../../../../core/users/user.hook';
@@ -178,7 +178,6 @@ const Landing = ({markDownId, email}:any) => {
            markDownId: markDownId
       };
      const data = await getNextLesson(markDownIdAndEmail);
-     console.log(data)
      history.push(`/student/working-area/${data.nextLesson.id}`)
   }
   
