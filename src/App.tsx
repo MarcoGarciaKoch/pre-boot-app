@@ -1,5 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonPage, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Login from './pages/auth/login/index';
 import Register from './pages/auth/register/index';
@@ -47,10 +47,12 @@ const App: React.FC = () => (
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/validate" component={Validate} />
         <Route exact path="/login" component={Login} />
+        <Route path="/demo" ><IonPage><h1>Hello</h1></IonPage></Route>
         <Route path="/student">
-          <CourseStudentDataProvider>
-            <ChatProvider>
-              <IonRouterOutlet>
+          <IonPage>
+            <CourseStudentDataProvider>
+              <ChatProvider>
+                <IonRouterOutlet>
                   <Route path='/student/dashboard'>
                     <Dashboard></Dashboard>
                   </Route>
@@ -60,9 +62,10 @@ const App: React.FC = () => (
                   <Route>
                     <NotFound />
                   </Route>
-              </IonRouterOutlet>
-            </ChatProvider>
-          </CourseStudentDataProvider>
+                </IonRouterOutlet>
+              </ChatProvider>
+            </CourseStudentDataProvider>
+          </IonPage>
         </Route>
         <Route exact path="/tabs" component={Tabs} />
         <Route>

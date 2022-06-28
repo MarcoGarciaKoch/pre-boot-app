@@ -1,5 +1,5 @@
 import { registerAPI, loginAPI, validateTokenAPI, validateEarlyStudentTokenAPI } from "./auth.api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AUTH_STORAGE_KEY } from "./auth.utils";
 import { RegisterUser, LoginUser } from "./auth.model";
 import { useIonLoading } from "@ionic/react";

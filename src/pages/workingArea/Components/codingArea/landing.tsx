@@ -185,7 +185,7 @@ const Landing = ({markDownId, email}:any) => {
 
 
   return (
-    <IonContent>
+    <div className="monaco__container">
         <IonItem color="light" lines="none" className="language-dropdown__container ion-justify-content-between">
           <IonLabel>{t('specific.workingArea.language')}</IonLabel>
           <LanguagesDropdown onSelectChange={onSelectChange} />
@@ -221,7 +221,7 @@ const Landing = ({markDownId, email}:any) => {
           <IonButton color="success" className="ion-padding  code-editor-button" onClick={nextLesson}>{t('specific.workingArea.nextButton')}</IonButton>
         </div>
         {outputDetails && <OutputDetails outputDetails={outputDetails} />}
-    </IonContent>
+    </div>
   );
 };
 export default Landing;
