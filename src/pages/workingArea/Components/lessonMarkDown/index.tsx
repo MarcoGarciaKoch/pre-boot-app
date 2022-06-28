@@ -10,7 +10,7 @@ const LessonMarkDown = ({markDownId, dark}:any) => {
 
     useIonViewWillEnter(() => {
         //Fetch to get the markdown file by id
-        fetch(`http://localhost:4000/assets/courses/javascript/${markDownId.id}.md`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/assets/courses/javascript/${markDownId.id}.md`)
         .then(r => r.text())
         .then(r => setMarkdown(r));
     }, [markDownId])
