@@ -47,7 +47,6 @@ const App: React.FC = () => (
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/validate" component={Validate} />
         <Route exact path="/login" component={Login} />
-        <Route path="/demo" ><IonPage><h1>Hello</h1></IonPage></Route>
         <Route path="/student">
           <IonPage>
             <CourseStudentDataProvider>
