@@ -1,0 +1,7 @@
+{
+  "name": "pre-boot-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

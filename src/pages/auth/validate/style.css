@@ -1,0 +1,43 @@
+
+.background-validate {
+    --background: url('../../../assets/images/background-dark-mode.jpg') 60% no-repeat;
+    --padding-top: 12vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+
+.message-one {
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.3rem;
+    display: table-cell;
+
+}
+
+.message-two {
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.3rem;
+    display: table-cell;
+}
+
+.link-to-login {
+    display: block;
+    text-align: center;
+}
+
+.text-login {
+    font-size: 1.2rem;
+    align-self: center;
+}
+
+
+.alert__image {
+    width: 15rem;
+    margin: auto;
+}
+
+.obama_gif {
+    width: 35rem;
+}

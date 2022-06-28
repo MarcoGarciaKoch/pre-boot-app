@@ -1,0 +1,85 @@
+
+.es-button__language, .en-button__language {
+    --background: var(--ion-color-tertiary);
+}
+
+.early-light-content-background {
+    --background: url('../../assets/images/background-light-mode.jpg') 60% no-repeat;
+    --padding-top: 9vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+.early-dark-content-background {
+    --background: url('../../assets/images/background-dark-mode.jpg') 60% no-repeat;
+    --padding-top: 9vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+.header__logo {
+    width: 3rem;
+    min-width: 3rem;
+}
+
+.header__title {
+    font-size: 1.5rem;
+    color: #615f5f;
+}
+
+.register-message__container {
+    margin-bottom: 30px;
+}
+
+.dark-registered-message {
+    --color: #ffffff;
+}
+
+.registered-message, .light-registered-message {
+    --color: #000000;
+    margin-left: 15px;
+    padding-left: 0px;
+    font-size: 1.2rem;
+    display: table-cell;
+}
+
+.register__logo{
+    width: 5rem;
+    margin-bottom: 30px;
+}
+
+.title__container {
+    display: flex;
+    justify-content: center;
+}
+
+.title-text-light {
+    color: #000000;
+}
+
+.form-title {
+    --color: #ffffff;
+    font-size: 1.2rem;
+    display: table-cell;
+}
+
+.email-input__container {
+    height: 48px;
+}
+
+.rol-input__label, .course-input__label {
+    display: table-cell;
+}
+
+
+.register__button {
+    --background: var(--ion-color-secondary);
+    --color: #ffffff;
+}
+
+
+@media (max-width: 650px) {
+    .header__title {
+        display: none;
+    }
+}

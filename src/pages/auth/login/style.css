@@ -1,0 +1,48 @@
+.es-button__language, .en-button__language {
+    --background: var(--ion-color-tertiary);
+}
+
+.light-content-background {
+    --background: url('../../../assets/images/background-light-mode.jpg') 60% no-repeat;
+    --padding-top: 5vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+.dark-content-background {
+    --background: url('../../../assets/images/background-dark-mode.jpg') 60% no-repeat;
+    --padding-top: 5vh;
+    --padding-bottom: 10vh;
+    --font-family: Inconsolata !important;
+}
+
+.header__logo {
+    width: 3rem;
+}
+
+.header__title {
+    font-size: 1.5rem;
+    color: #615f5f;
+}
+
+.login__logo{
+    width: 7rem;
+    margin-bottom: 30px;
+}
+
+.extra-info {
+    color: #908f8f;
+}
+
+
+.login__button {
+    --background: var(--ion-color-secondary);
+    --color: #ffffff;
+}
+
+
+@media (max-width: 650px) {
+    .header__title {
+        display: none;
+    }
+}

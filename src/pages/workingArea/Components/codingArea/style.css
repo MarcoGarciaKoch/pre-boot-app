@@ -1,0 +1,32 @@
+
+.landing__container {
+    height: 100%;
+}
+
+.language-dropdown__container {
+    margin: 16px 16px 0px 16px;
+    border-bottom: 1px solid #cac8c8;
+    opacity: 0.8;
+}
+
+.theme-dropdown__container {
+    margin: 0px 16px 0px 16px;
+    opacity: 0.8;
+    
+}
+
+.code-window-buttons__container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.code-editor-button {
+    width: 200px;
+    height: 80px;
+}
+
+.monaco__container{
+    background: var(--ion-color-light);
+    margin-top: 0px;
+}

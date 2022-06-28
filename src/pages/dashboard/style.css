@@ -1,0 +1,107 @@
+
+.es-button__language, .en-button__language {
+    --background: var(--ion-color-tertiary);
+}
+
+.header__logo {
+    width: 3rem;
+}
+
+.header__title {
+    font-size: 1.5rem;
+    color: #615f5f;
+}
+
+.logout-button {
+    width: 2rem;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.logout-button:active {
+    transform: scale(0.95);
+
+}
+
+.dashboard-light-content-background {
+    --background: url('../../assets/images/background-light-mode.jpg') 35%;
+    --font-family: Inconsolata !important;
+}
+
+.dashboard-dark-content-background {
+    --background: url('../../assets/images/background-dark-mode.jpg') 10%;
+    --font-family: Inconsolata !important;
+}
+
+.progress__title, .progress__percentage {
+    font-size: 1.25rem;
+}
+
+.progress__percentage {
+    font-size: 1.25rem;
+    margin-right: 30px;
+}
+
+.progress-bar {
+    height: 25px;
+    width: 42%;
+    --background: #d451d44a;
+    margin-right: 30px;
+}
+
+.lesson-list__container {
+    padding-top: 0px;
+    /* height: calc(100vh - 261px); */
+}
+
+.lessons-scrollable__container{
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: calc(100vh - 314px);
+}
+
+
+.chat__container {
+    padding-top: 0px;
+}
+
+.messages-scrollable__container {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: calc(100vh - 435px);
+}
+
+.lessons-list__header, .chat-list__header, .teacher-list__header {
+    opacity: 0.7;
+    color: #ffffff;
+}
+
+.send-message__container {
+    width: 100%;
+    border-top: 1px solid #dfdcdc;
+}
+
+.teacher-card__container, .teacher-card__container-main {
+    padding-top: 0;
+}
+
+.teacher_avatar {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+
+.teacher-details {
+    font-size: 35px;
+}
+
+.footer-text {
+    display: table-cell;
+}
+
+@media (max-width: 650px) {
+    .header__title {
+        display: none;
+    }
+}

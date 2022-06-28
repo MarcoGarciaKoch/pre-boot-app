@@ -1,0 +1,26 @@
+.page-message-one {
+    position: absolute;
+    z-index: 10;
+    color: var(--ion-color-secondary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 100px;
+    display: table-cell;
+}
+
+.page-message-two {
+    position: absolute;
+    z-index: 10;
+    color: var(--ion-color-secondary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 190px;
+    display: table-cell;
+}
+
+.page-image-validate {
+    height: 100vh;
+    position: absolute;
+    align-self: center;
+    margin-top: 50px;
+}
