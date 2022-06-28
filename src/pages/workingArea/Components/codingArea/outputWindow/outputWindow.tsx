@@ -1,9 +1,10 @@
-import { IonTitle, IonItem } from "@ionic/react";
-
-
+import { IonTitle, IonItem, IonLabel } from "@ionic/react";
+import './style.css';
+import { useTranslation } from 'react-i18next';
 
 
 const OutputWindow = ({ outputDetails }: any) => {
+    const [t, i18n] = useTranslation('translation');
     
     const getOutput = () => {
       let statusId = outputDetails?.status?.id;
@@ -11,31 +12,31 @@ const OutputWindow = ({ outputDetails }: any) => {
         switch (statusId) {
             case 6: 
                 return (
-                    <pre className="px-2 py-1 font-normal text-xs text-red-500">
-                    {/* {atob(outputDetails?.compile_output)} */}
+                    <pre className="output-message-style">
+                    {atob(outputDetails?.compile_output)}
                     </pre>
                 )
             
             case 3: 
                 return (
-                    <pre className="px-2 py-1 font-normal text-xs text-green-500">
-                        {/* {atob(outputDetails.stdout) !== null
+                    <pre className="output-message-style">
+                        {atob(outputDetails.stdout) !== null
                         ? `${atob(outputDetails.stdout)}`
-                        : null} */}
+                        : null}
                     </pre>
                 )
 
             case 5:
                 return (
-                    <pre className="px-2 py-1 font-normal text-xs text-red-500">
+                    <pre className="output-message-style">
                     {`Time Limit Exceeded`}
                     </pre>
                 )
             
             default:
                 return (
-                    <pre className="px-2 py-1 font-normal text-xs text-red-500">
-                    {/* {atob(outputDetails?.stderr)} */}
+                    <pre className="output-message-style">
+                    {atob(outputDetails?.stderr)}
                     </pre>
                 )
         }
@@ -43,14 +44,14 @@ const OutputWindow = ({ outputDetails }: any) => {
 
 
     return (
-      <IonItem lines="none" className="ion-margin-bottom">
-        <IonTitle className="ion-padding-top">
-          Output
-        </IonTitle>
-        <IonItem lines="none">
-          {outputDetails ? <>{getOutput()}</> : null}
-        </IonItem>
-      </IonItem>
+        <>
+          <IonLabel color="dark" className="ion-padding-top output-title">
+          {t('specific.workingArea.result')}
+          </IonLabel>
+          <div className="output-content-style">
+            {outputDetails ? <>{getOutput()}</> : null}
+          </div>
+          </>
     );
   };
   

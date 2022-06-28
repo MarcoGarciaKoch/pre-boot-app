@@ -18,7 +18,8 @@ const Login: React.FC = () => {
     const history = useHistory();
     const [t, i18n] = useTranslation('translation');
     const toggleDarkModeHandler = () => document.body.classList.toggle('dark');
-    
+    const [dark, setDark] = useState(false);
+
     
 
     useIonViewDidEnter(() => {
@@ -52,21 +53,21 @@ const Login: React.FC = () => {
                         <IonTitle className="header__title">PRE-BOOT</IonTitle>
                     </IonItem>
                     <IonIcon slot="end" icon={Sun} />
-                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} onClick={() => setDark(!dark)}/>
                     <IonIcon slot="end" icon={moon} className="ion-padding-end"/>
                     <IonButton size='small' className="es-button__language ion-padding-start" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
                     <IonButton size='small' className="en-button__language ion-padding-end" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
                 </IonToolbar>
             </IonHeader>
-			<IonContent fullscreen className='content-background'>
+			<IonContent fullscreen scrollY={false} className={dark ? 'dark-content-background' : 'light-content-background'}>
                 <IonGrid>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol size='1'>
+                        <IonCol sizeXs='3' sizeSm='2' sizeMd='2' sizeLg='1' sizeXl='1'>
                             <IonImg src={LoginLogo} alt="login-logo" className="login__logo"></IonImg>
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol size='4'>
+                        <IonCol sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                             <IonLabel position="floating">{t('specific.login.email')}</IonLabel>
                             <IonInput
@@ -80,7 +81,7 @@ const Login: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol size='4'>
+                        <IonCol sizeXs='8' sizeSm='7' sizeMd='6' sizeLg='5' sizeXl='4'>
                             <IonItem>
                             <IonLabel position="floating">{t('specific.login.password')}</IonLabel>
                             <IonInput
@@ -94,7 +95,7 @@ const Login: React.FC = () => {
                         </IonCol>
                     </IonRow>
                     <IonRow className="ion-justify-content-center">
-                        <IonCol size='4'>
+                        <IonCol sizeXs='6' sizeSm='5' sizeMd='4' sizeLg='3' sizeXl='2'>
                             <p className='extra-info' style={{ fontSize: "small" }}>
                             {t('specific.login.extra-info')} <a href="#">{t('specific.login.policy')}</a> {t('specific.login.and')} <a href="#">{t('specific.login.terms')}</a> {t('specific.login.use')}.
                             </p>

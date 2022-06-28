@@ -1,5 +1,5 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonCol, IonRow, IonList, IonListHeader, IonInput,
-         IonGrid, IonIcon, IonToggle, IonButton, IonImg, IonFooter, IonFab, IonFabButton, IonFabList, IonModal } from "@ionic/react";
+         IonGrid, IonIcon, IonToggle, IonButton, IonImg, IonFooter, IonFab, IonFabButton, IonFabList, IonModal, IonLabel } from "@ionic/react";
 import IconMessage from '../../assets/images/chat-icon.svg'
 import LessonMarkDown from "./Components/lessonMarkDown";
 import './style.css';
@@ -18,9 +18,10 @@ import { useHistory, useParams } from "react-router-dom";
 import Landing from "./Components/codingArea/landing";
 import { CourseStudentDataContext } from "../../context/CourseStudentData/courseStudentData.context";
 import { ChatContext } from "../../context/Chat/chat.context";
-import ConectedUser from "../dashboard/conectedUsers";
-import ChatMessage from "../dashboard/chatMessage";
+import ConectedUser from "../dashboard/Chat/components/conectedUsers";
+import ChatMessage from "../dashboard/Chat/components/chatMessage";
 import { useContext, useState } from "react";
+import Chat from "../dashboard/Chat";
 
 
 const WorkingArea: React.FC = () => {
@@ -29,9 +30,10 @@ const WorkingArea: React.FC = () => {
     const history = useHistory();
     const id  = useParams();
     const { userCourseData, updateUserCourseData }:any = useContext(CourseStudentDataContext);
-    const { usersConected, messagesList, sendMessage }:any = useContext(ChatContext);
+    const { usersConnected, messageList, sendMessage }:any = useContext(ChatContext);
     const [newMessage, setNewMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [dark, setDark] = useState(false);
 
 
 
@@ -61,22 +63,22 @@ const WorkingArea: React.FC = () => {
           <IonHeader>
           <IonToolbar>
                     <IonItem lines='none'>
-                        <IonImg src={PreBoot} alt="pre-boot-logo" className="header__logo"/>
+                        <IonImg src={PreBoot} alt="pre-boot-logo" className="header__logo" onClick={() => history.push('/student/dashboard')}/>
                         <IonTitle className="header__title">PRE-BOOT</IonTitle>
                     </IonItem>
                     <IonIcon slot="end" icon={Sun} />
-                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} />
+                    <IonToggle slot="end" name="darkMode" onIonChange={toggleDarkModeHandler} onClick={() => setDark(!dark)}/>
                     <IonIcon slot="end" icon={moon} className="ion-padding-end"/>
                     <IonButton size='small' className="es-button__language ion-padding-start" onClick={() => i18n.changeLanguage("es")} slot="end">ES</IonButton>
                     <IonButton size='small' className="en-button__language ion-padding-end" onClick={() => i18n.changeLanguage("en")} slot="end" >EN</IonButton>
                     <IonImg slot='end' src={LogOut} alt='log-out-button' className="logout-button" onClick={logOut}></IonImg>
                 </IonToolbar>
           </IonHeader>
-          <IonContent className="working-area-content-background">
+          <IonContent fullscreen className={dark ? 'workarea-dark-content-background' : 'workarea-light-content-background'}>
             <IonGrid>
                 <IonRow className="ion-justify-content-evenly">
-                    <IonCol size="5" offset-4><LessonMarkDown markDownId={id}></LessonMarkDown></IonCol>
-                    <IonCol size="5" offset-4 className="ion-padding-top"><Landing></Landing></IonCol>
+                    <IonCol sizeXs="11" sizeSm="11" sizeMd="11" sizeLg="6" sizeXl="6"><LessonMarkDown markDownId={id} dark={dark}></LessonMarkDown></IonCol>
+                    <IonCol sizeXs="11" sizeSm="11" sizeMd="11" sizeLg="5" sizeXl="5" className="ion-padding-top"><Landing markDownId={id} email={userCourseData.student.email}></Landing></IonCol>
                 </IonRow>
             </IonGrid>
             <IonFab horizontal="end" vertical="bottom" slot="fixed" className="chat__fab">
@@ -85,26 +87,9 @@ const WorkingArea: React.FC = () => {
                 </IonFabButton>
             </IonFab>
             <IonModal isOpen={showModal} className='modal__container' onDidDismiss={() => setShowModal(false)}>
-                <IonList inset={true} lines='inset' className='modal-chat__container'>
-                    <IonItem lines="none">
-                        <IonListHeader> SUPER CHAT </IonListHeader>
-                        <IonButton onClick={() => setShowModal(false)} color="secondary">X</IonButton>
-                    </IonItem>
-                    <IonItem lines='none'>
-                    {userCourseData?.course.students.map((u:any,i:any) => <ConectedUser key={i} user={u} usersConected={usersConected}></ConectedUser>)}
-                    </IonItem>
-                    {messagesList?.map((message:any,i:any) => <ChatMessage key={i} message={message} userCourseData={userCourseData}></ChatMessage>)}
-                    <IonItem className='send-message__container'>
-                        <IonInput
-                            className='ion-margin'
-                            type='text'
-                            value={newMessage}
-                            onIonChange={handleNewMessageChange}
-                            placeholder='Send a message'
-                        ></IonInput>
-                        <IonButton type="submit" onClick={handleSendMessage} color='secondary' className='ion-align-self-center'>SEND</IonButton>
-                    </IonItem>
-                </IonList>
+                    <Chat userCourseData={userCourseData} usersConnected={usersConnected} messageList={messageList} newMessage={newMessage} 
+                          handleNewMessageChange={handleNewMessageChange} handleSendMessage={handleSendMessage}>
+                    </Chat>
             </IonModal>
             <IonFab horizontal="end" vertical="bottom" slot="fixed" className="social-media__fab">
                 <IonFabButton color="light" size='small'>
@@ -124,10 +109,14 @@ const WorkingArea: React.FC = () => {
                     <IonIcon icon={Linkedin} color='dark'></IonIcon>
                     </IonFabButton>
                 </IonFabList>
-        </IonFab>
+            </IonFab>
             <IonFooter collapse='fade'>
                 <IonToolbar>
-                    <IonTitle>Footer - @Marco García Koch</IonTitle>
+                    <IonLabel className='footer-text ion-text-wrap extra-info ion-padding-start' style={{ fontSize: "small" }}>
+                        {`© 2022 Marco García Koch, Inc. ${t('specific.dashboard.footer.rights')}. `} 
+                        <a href="#">{t('specific.login.policy')}</a> {t('specific.login.and')} <a href="#">{t('specific.login.terms')}</a> {t('specific.login.use')}.
+                        {t('specific.dashboard.footer.atributions')}
+                    </IonLabel>
                 </IonToolbar>
             </IonFooter>
         </IonContent>

@@ -7,7 +7,6 @@ import ConfirmEmail from './pages/confirmEmail/index';
 import Validate from './pages/auth/validate/index';
 import LandingPage from './pages/landingPage/index';
 import EarlyStudentRegister from './pages/earlyStudentRegister/index';
-import InvitationSent from './pages/invitationSent/index';
 import WorkingArea from './pages/workingArea/index';
 import Tabs from './pages/tabs/index';
 import NotFound from './pages/notFound/index';
@@ -44,7 +43,6 @@ const App: React.FC = () => (
         <Route exact path="/" render={() => <Redirect to="/login" />} />
         <Route exact path="/landing" component={LandingPage} />
         <Route exact path="/early-student-register" component={EarlyStudentRegister} />
-        <Route exact path="/invitation-sent" component={InvitationSent} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/validate" component={Validate} />

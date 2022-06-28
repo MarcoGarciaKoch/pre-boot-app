@@ -1,16 +1,25 @@
 
-.background {
-    --background: url('../../../assets/images/fondo-gradient.jpg') 0 0/100%;
+.background-validate {
+    --background: url('../../../assets/images/background-dark-mode.jpg') 60% no-repeat;
     --padding-top: 12vh;
     --padding-bottom: 10vh;
     --font-family: Inconsolata !important;
 }
 
 
-.message {
-    --color: #ffffff;
+.message-one {
+    color: #ffffff;
     text-align: center;
+    font-size: 1.3rem;
+    display: table-cell;
 
+}
+
+.message-two {
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.3rem;
+    display: table-cell;
 }
 
 .link-to-login {
@@ -30,6 +39,5 @@
 }
 
 .obama_gif {
-    width: 40rem;
-    margin: auto;
+    width: 35rem;
 }

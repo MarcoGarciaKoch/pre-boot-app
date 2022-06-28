@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CodeEditorWindow from './codingEditor/codeEditorWindow';
 import { languageOptions } from './constants/languageOptions';
 import { defineTheme } from './themeDropdown/defineTheme';
-import useKeyPress from '../../../../core/users/user.hook';
+import { useKeyPress } from '../../../../core/users/user.hook';
 import OutputWindow from './outputWindow/outputWindow';
 import CustomInput from './customInput/customInput';
 import OutputDetails from './outputDetails/outputDetails';
@@ -11,12 +11,19 @@ import LanguagesDropdown from './languageDropdown/languagesDropdown';
 import { IonButton, IonContent, IonItem, IonLabel, useIonToast } from "@ionic/react";
 import { config } from '../../../../config';
 import './style.css';
+import { useNextLesson } from '../../../../core/users/user.hook';
+import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
 
 
-const javascriptDefault = `// some comment`;
+const javascriptDefault = `// Completa los ejercicios`;
 const themeDefault = "oceanic-next";
 
-const Landing = () => {
+
+
+
+
+const Landing = ({markDownId, email}:any) => {
   const [code, setCode] = useState(javascriptDefault);
   const [customInput, setCustomInput] = useState("");
   const [outputDetails, setOutputDetails] = useState(null);
@@ -24,6 +31,9 @@ const Landing = () => {
   const [theme, setTheme] = useState(themeDefault);
   const [language, setLanguage] = useState(languageOptions[0]);
   const [present, dismiss] = useIonToast();
+  const { getNextLesson, nextLessonData}  = useNextLesson();
+  const history = useHistory();
+  const [t, i18n] = useTranslation('translation');
 
   const enterPress = useKeyPress("Enter");
   const ctrlPress = useKeyPress("Control");
@@ -76,8 +86,8 @@ const Landing = () => {
     };
 
      try {
-      // fetch(`${config.RAPID_API_URL}?base64_encoded=true&fields=*`, options)
-      fetch('https://b86c1a44-8b0f-4e23-8044-76d75955c98a.mock.pstmn.io/submissions?base64_encoded=true&fields=*')
+      fetch(`${config.RAPID_API_URL}?base64_encoded=true&fields=*`, options)
+      // fetch('https://b86c1a44-8b0f-4e23-8044-76d75955c98a.mock.pstmn.io/submissions?base64_encoded=true&fields=*')
       .then(r => r.json())
       .then(d => {
         const token = d.token;
@@ -103,8 +113,8 @@ const Landing = () => {
         },
       };
       try {
-        // await fetch(`${config.RAPID_API_URL}/${token}?base64_encoded=true&fields=*`, options)
-        await fetch('https://b86c1a44-8b0f-4e23-8044-76d75955c98a.mock.pstmn.io/submissions/04b04da4-248e-4cf5-84e0-a80818e035fb?base64_encoded=true&fields=*')
+        await fetch(`${config.RAPID_API_URL}/${token}?base64_encoded=true&fields=*`, options)
+        // await fetch('https://b86c1a44-8b0f-4e23-8044-76d75955c98a.mock.pstmn.io/submissions/04b04da4-248e-4cf5-84e0-a80818e035fb?base64_encoded=true&fields=*')
         .then(r => r.json())
         .then(d => {
         const statusId = d.status?.id;
@@ -159,15 +169,29 @@ const Landing = () => {
     });
     dismiss();
   };
+
+
+  const nextLesson = async (e:any) => {
+    e.preventDefault();
+      const markDownIdAndEmail = {
+           email: email,
+           markDownId: markDownId
+      };
+     const data = await getNextLesson(markDownIdAndEmail);
+     console.log(data)
+     history.push(`/student/working-area/${data.nextLesson.id}`)
+  }
   
+
+
   return (
     <IonContent>
-        <IonItem lines="none" className="language-dropdown__container ion-justify-content-between">
-          <IonLabel>Select Your Programming Language</IonLabel>
+        <IonItem color="light" lines="none" className="language-dropdown__container ion-justify-content-between">
+          <IonLabel>{t('specific.workingArea.language')}</IonLabel>
           <LanguagesDropdown onSelectChange={onSelectChange} />
         </IonItem>
-        <IonItem lines="none"  className="theme-dropdown__container ion-justify-content-between">
-          <IonLabel>Select Your Theme</IonLabel>
+        <IonItem color="light" lines="none"  className="theme-dropdown__container ion-justify-content-between">
+          <IonLabel>{t('specific.workingArea.theme')}</IonLabel>
           <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
         </IonItem>
         <div>
@@ -184,14 +208,18 @@ const Landing = () => {
           setCustomInput={setCustomInput}
         >
         </CustomInput>
-        <IonButton
-          color='secondary'
-          className="ion-padding"
-          onClick={handleCompile}
-          disabled={!code}
-        >
-          {processing ? "Processing..." : "CHECK YOUR CODE"}
-        </IonButton>
+        <div className="code-window-buttons__container">
+          <IonButton
+            color='secondary'
+            className="ion-padding  code-editor-button"
+            onClick={handleCompile}
+            disabled={!code}
+          >
+            {processing ? "Processing..." : `${t('specific.workingArea.checkButton')}`}
+          </IonButton>
+          <IonButton color="warning" className="ion-padding  code-editor-button">{t('specific.workingArea.showButton')}</IonButton>
+          <IonButton color="success" className="ion-padding  code-editor-button" onClick={nextLesson}>{t('specific.workingArea.nextButton')}</IonButton>
+        </div>
         {outputDetails && <OutputDetails outputDetails={outputDetails} />}
     </IonContent>
   );

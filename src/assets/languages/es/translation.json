@@ -79,6 +79,30 @@
                 "terms": "Condiciones",
                 "use": "de Uso",
                 "button": "LOGIN"
+            },
+            "dashboard": {
+                "greeting": "Bienvenido ",
+                "progress": "Tu Progreso",
+                "lessons": "LECCIONES",
+                "chat": "SUPER CHAT",
+                "placeholder": "Envía un mensaje",
+                "button": "ENVIAR",
+                "videocall": "RESERVA TU LLAMADA",
+                "head": "Head Teacher",
+                "support": "Support Teacher",
+                "slot": "Elige tu día y hora",
+                "footer": {
+                    "rights": "Todos los derechos reservados",
+                    "atributions": "Atribuciones legales"
+                }
+            },
+            "workingArea": {
+                "language": "Lenguage De Programación",
+                "theme": "Tema De Fondo",
+                "result": "RESULTADO",
+                "checkButton": "VERIFICAR CODIGO",
+                "showButton": "SOLUCIÓN",
+                "nextButton": "SIGUIENTE"
             }
         }
 }

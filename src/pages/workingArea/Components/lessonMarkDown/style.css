@@ -1,0 +1,21 @@
+
+.scrollable-markdown__container {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: calc(100vh - 131px);
+}
+
+.light-markdown__container {
+    /* height: calc(100vh - 265px); */
+    background-color: #ffffff;
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.dark-markdown__container {
+    /* height: calc(100vh - 265px); */
+    background-color: #121212;
+    color: #b0b0b0;
+    padding: 16px;
+    margin-top: 10px;
+}

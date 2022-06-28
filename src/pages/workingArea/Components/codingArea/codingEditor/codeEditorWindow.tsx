@@ -13,7 +13,7 @@ const CodeEditorWindow: React.FC<any> = ({ onChange, language, code, theme }:any
   };
 
   return (
-    <IonItem lines="none" className="editor__container">
+    <IonItem lines="none">
       <Editor
         height="40vh"
         width={`100%`}
@@ -21,6 +21,7 @@ const CodeEditorWindow: React.FC<any> = ({ onChange, language, code, theme }:any
         value={value}
         theme={theme}
         onChange={handleEditorChange}
+        className='editor__container'
       />
     </IonItem>
   );
