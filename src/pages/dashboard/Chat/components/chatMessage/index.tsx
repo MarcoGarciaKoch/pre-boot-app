@@ -6,7 +6,7 @@ import { Avatars } from '../../../dashboard.model';
 
 const ChatMessage:any = ({message, userCourseData, students}:any) => {
     const [messageToPrint, setMessageToPrint] = useState({} ?? '')
-    const student = students.find((u:any) => u.email===message.userEmail);
+    const student = students.find((u:any) => u.email===message.userEmail) ?? {};
     useIonViewWillEnter(() =>{
         setMessageToPrint(message)
     },[message])
@@ -15,7 +15,7 @@ const ChatMessage:any = ({message, userCourseData, students}:any) => {
             return (
             <IonItem slot="start" color='light' className='others-message-item'>
                 <IonAvatar slot="start" className='others-message-avatar'>
-                    <img src={student.avatar} />
+                    <img src={Avatars[student.avatar]} />
                 </IonAvatar>
                 <IonLabel slot='end'>
                     <IonLabel className='ion-text-wrap others-message-name'>{`${student.name} ${student.lastname}`}</IonLabel>
