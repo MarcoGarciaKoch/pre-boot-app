@@ -6,7 +6,7 @@ import { Avatars } from '../../../dashboard.model';
 
 const ChatMessage:any = ({message, userCourseData, students}:any) => {
     const [messageToPrint, setMessageToPrint] = useState({} ?? '')
-    const student = students.find((u:any) => u.email===message.userEmail);
+    const student = students.find((u:any) => u.email===message.userEmail) ?? {};
     useIonViewWillEnter(() =>{
         setMessageToPrint(message)
     },[message])

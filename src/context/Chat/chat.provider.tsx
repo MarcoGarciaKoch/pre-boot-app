@@ -24,6 +24,7 @@ function ChatProvider({ children }: any) {
 
             //lstens from incoming conected users and last messages data
             socketRef.current.on(USER__CONECTED, (chatData: any) => {
+                console.log('Usuario Conectado: ',chatData)
                 updateUsersConected(chatData.chat.usersConected);
                 setMessageList(chatData.chat.messages);
                 setStudents(chatData.users);
