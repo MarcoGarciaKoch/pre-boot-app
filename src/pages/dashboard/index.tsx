@@ -189,7 +189,7 @@ const Dashboard: React.FC = () => {
                     <IonLabel className='footer-text ion-text-wrap extra-info ion-padding-start' style={{ fontSize: "small" }}>
                         {`© 2022 Marco García Koch, Inc. ${t('specific.dashboard.footer.rights')}. `} 
                         <a href="#">{t('specific.login.policy')}</a> {t('specific.login.and')} <a href="#">{t('specific.login.terms')}</a> {t('specific.login.use')}.
-                        {t('specific.dashboard.footer.atributions')}
+                        <p className='footer-attributions'>{t('specific.dashboard.footer.atributions')}</p>
                     </IonLabel>
                 </IonToolbar>
             </IonFooter>
