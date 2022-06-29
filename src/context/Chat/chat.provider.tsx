@@ -11,6 +11,7 @@ const SOCKET_SERVER_URL = process.env.REACT_APP_API_BASE_URL || '';
 function ChatProvider({ children }: any) {
     const [usersConnected, updateUsersConected] = useState([])
     const [messageList, setMessageList] = useState([])
+    const [students, setStudents] = useState([]);
     const { userCourseData }: any = useContext(CourseStudentDataContext)
     const socketRef: any = useRef();
 
@@ -24,7 +25,8 @@ function ChatProvider({ children }: any) {
             //lstens from incoming conected users and last messages data
             socketRef.current.on(USER__CONECTED, (chatData: any) => {
                 updateUsersConected(chatData.chat.usersConected);
-                setMessageList(chatData.chat.messages)
+                setMessageList(chatData.chat.messages);
+                setStudents(chatData.users);
             })
 
             //Listens from incoming messages
@@ -58,7 +60,7 @@ function ChatProvider({ children }: any) {
 
 
     return (
-        <ChatContext.Provider value={{ usersConnected, messageList, sendMessage }}>
+        <ChatContext.Provider value={{ usersConnected, messageList, sendMessage, students }}>
             {children}
         </ChatContext.Provider>
     )

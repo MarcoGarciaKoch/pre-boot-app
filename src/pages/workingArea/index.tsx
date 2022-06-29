@@ -30,7 +30,7 @@ const WorkingArea: React.FC = () => {
     const history = useHistory();
     const id  = useParams();
     const { userCourseData, updateUserCourseData }:any = useContext(CourseStudentDataContext);
-    const { usersConnected, messageList, sendMessage }:any = useContext(ChatContext);
+    const { usersConnected, messageList, sendMessage, students }:any = useContext(ChatContext);
     const [newMessage, setNewMessage] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [dark, setDark] = useState(false);
@@ -39,10 +39,7 @@ const WorkingArea: React.FC = () => {
 
     const logOut = () => {
       sessionStorage.removeItem(AUTH_STORAGE_KEY);
-      if (sessionStorage.getItem(AUTH_STORAGE_KEY) === null) {
-          // after login, it will redirect to dashboard page
-          history.push("/login"); 
-      } 
+      history.push("/login"); 
   }
 
 
@@ -88,7 +85,7 @@ const WorkingArea: React.FC = () => {
             </IonFab>
             <IonModal isOpen={showModal} className='modal__container' onDidDismiss={() => setShowModal(false)}>
                     <Chat userCourseData={userCourseData} usersConnected={usersConnected} messageList={messageList} newMessage={newMessage} 
-                          handleNewMessageChange={handleNewMessageChange} handleSendMessage={handleSendMessage}>
+                          handleNewMessageChange={handleNewMessageChange} handleSendMessage={handleSendMessage} students={students}>
                     </Chat>
             </IonModal>
             <IonFab horizontal="end" vertical="bottom" slot="fixed" className="social-media__fab">

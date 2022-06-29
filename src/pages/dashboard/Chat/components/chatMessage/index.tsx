@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { Avatars } from '../../../dashboard.model';
 
 
-const ChatMessage:any = ({message, userCourseData}:any) => {
+const ChatMessage:any = ({message, userCourseData, students}:any) => {
     const [messageToPrint, setMessageToPrint] = useState({} ?? '')
-
+    const student = students.find((u:any) => u.email===message.userEmail);
     useIonViewWillEnter(() =>{
         setMessageToPrint(message)
     },[message])
@@ -15,10 +15,10 @@ const ChatMessage:any = ({message, userCourseData}:any) => {
             return (
             <IonItem slot="start" color='light' className='others-message-item'>
                 <IonAvatar slot="start" className='others-message-avatar'>
-                    <img src={userCourseData.student.avatar} />
+                    <img src={student.avatar} />
                 </IonAvatar>
                 <IonLabel slot='end'>
-                    <IonLabel className='ion-text-wrap others-message-name'>{`${userCourseData.student.name} ${userCourseData.student.lastname}`}</IonLabel>
+                    <IonLabel className='ion-text-wrap others-message-name'>{`${student.name} ${student.lastname}`}</IonLabel>
                     <IonText className='ion-text-wrap others-message-text'>{message.message}</IonText>
                 </IonLabel>
             </IonItem>

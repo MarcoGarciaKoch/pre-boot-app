@@ -3,18 +3,18 @@ import { Avatars } from '../../../dashboard.model';
 import { IonAvatar } from '@ionic/react';
 
 
-const ConectedUser = ({user, usersConected, avatar}:any) => {
+const ConectedUser = ({user, usersConected}:any) => {
 
-    if (usersConected?.some((u: any) => u === user)) {
+    if (usersConected?.some((u: string) => u === user.email)) {
     return (
         <IonAvatar slot="start" className='conected-avatars'>
-            <img src={Avatars[avatar]} />
+            <img src={Avatars[user.avatar]} />
         </IonAvatar>
     )
     }else {
         return (
             <IonAvatar className='non-conected-avatars'>
-                <img src={Avatars[avatar]} />
+                <img src={Avatars[user.avatar]} />
             </IonAvatar>
         )
     }

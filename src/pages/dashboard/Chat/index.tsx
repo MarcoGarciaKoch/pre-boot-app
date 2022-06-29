@@ -6,7 +6,7 @@ import ConectedUser from '../Chat/components/conectedUsers/index';
 import { useEffect, useRef } from 'react';
 
 
-const Chat = ({ userCourseData, usersConnected, messageList, newMessage, handleNewMessageChange, handleSendMessage }: any) => {
+const Chat = ({ userCourseData, usersConnected, messageList, newMessage, handleNewMessageChange, handleSendMessage, students }: any) => {
     const [t, i18n] = useTranslation('translation');
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +19,7 @@ const Chat = ({ userCourseData, usersConnected, messageList, newMessage, handleN
             });
         });
     }
-
+    console.log(userCourseData);
     useEffect(() => {
         scrollToBottom()
     }, [messageList]);
@@ -28,10 +28,10 @@ const Chat = ({ userCourseData, usersConnected, messageList, newMessage, handleN
         <IonList inset={true} className='chat__container'>
             <IonListHeader color="medium" className='chat-list__header'>{t('specific.dashboard.chat')}</IonListHeader>
             <IonItem lines="full">
-                {userCourseData?.course.students.map((u: any, i: any) => <ConectedUser key={i} user={u} usersConected={usersConnected} avatar={userCourseData.student.avatar}></ConectedUser>)}
+                {students.map((u: any) => <ConectedUser key={u.email} user={u} usersConected={usersConnected}></ConectedUser>)}
             </IonItem>
             <div ref={messagesEndRef} className='messages-scrollable__container'>
-                {messageList.map((message: any, i: any) => <ChatMessage key={i} message={message} userCourseData={userCourseData}></ChatMessage>)}
+                {messageList.map((message: any, i: any) => <ChatMessage key={i} message={message} students={students} userCourseData={userCourseData}></ChatMessage>)}
             </div>
             <IonItem className='send-message__container'>
                 <IonInput

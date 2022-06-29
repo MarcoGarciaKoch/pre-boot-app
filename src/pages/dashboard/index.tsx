@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
     const history = useHistory();
     const { isAuth } = useAuth();
     const { userCourseData }:any = useContext(CourseStudentDataContext)
-    const { usersConnected, messageList, sendMessage }:any = useContext(ChatContext); // Creates a websocket and manages data recovering from backend and messaging
+    const { usersConnected, messageList, sendMessage, students }:any = useContext(ChatContext); // Creates a websocket and manages data recovering from backend and messaging
     const [newMessage, setNewMessage] = useState('');
     const [dark, setDark] = useState(false);
     
@@ -114,7 +114,7 @@ const Dashboard: React.FC = () => {
                             </IonList>
                         </IonCol>
                         <IonCol sizeXs='12' sizeSm='11' sizeMd='6' sizeLg='4' sizeXl='4'>
-                            <Chat userCourseData={userCourseData} usersConnected={usersConnected} messageList={messageList} newMessage={newMessage} 
+                            <Chat userCourseData={userCourseData} usersConnected={usersConnected} messageList={messageList} newMessage={newMessage} students={students}
                                   handleNewMessageChange={handleNewMessageChange} handleSendMessage={handleSendMessage}>
                             </Chat>
                         </IonCol>
