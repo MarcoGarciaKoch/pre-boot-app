@@ -5,6 +5,7 @@ import { CourseStudentDataContext } from '../CourseStudentData/courseStudentData
 
 const NEW_CHAT_MESSAGE_EVENT = "chat message"; // Name of the event
 const USER__CONECTED = "user conected"; // Name of the event
+const USER_CONECTED_LIST = "user conected list"; // Name of the event
 const SOCKET_SERVER_URL = process.env.REACT_APP_API_BASE_URL || '';
 
 function ChatProvider({ children }: any) {
@@ -30,6 +31,10 @@ function ChatProvider({ children }: any) {
             socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, ({ chatData }: any) => {
                 setMessageList(chatData.chat.messages);
             });
+
+            socketRef.current.on(USER_CONECTED_LIST, (userConectedList:any) => {
+                updateUsersConected(userConectedList);
+            })
 
             // Destroys the socket reference when the connection is closed
             return () => {
