@@ -4,6 +4,7 @@ import { IonAvatar } from '@ionic/react';
 
 
 const ConectedUser = ({user, usersConected}:any) => {
+    console.log(usersConected)
 
     if (usersConected?.some((u: string) => u === user.email)) {
     return (
